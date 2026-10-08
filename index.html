@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <title>Captain Konveksi (Copy)</title>
+    <title>Captain Konveksi</title>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,800&family=Bebas+Neue&family=Black+Ops+One&family=Graduate&family=Pacifico&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Racing+Sans+One&display=swap">
     <style>
@@ -63,12 +63,23 @@
         }
 
         * {
-            box-sizing: border-box
+            box-sizing: border-box;
+            scrollbar-width: none;
+            -ms-overflow-style: none
+        }
+
+        *::-webkit-scrollbar,
+        ::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0
         }
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 108px
+            scroll-padding-top: 108px;
+            scrollbar-width: none;
+            -ms-overflow-style: none
         }
 
         body {
@@ -78,7 +89,9 @@
             background: var(--kertas);
             line-height: 1.6;
             font-size: 16px;
-            -webkit-text-size-adjust: 100%
+            -webkit-text-size-adjust: 100%;
+            scrollbar-width: none;
+            -ms-overflow-style: none
         }
 
         img,
@@ -181,11 +194,30 @@
 
         /* header */
         .atas {
-            position: sticky;
-            top: env(safe-area-inset-top, 0px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
             z-index: 50;
-            background: var(--navy);
-            color: var(--putih)
+            background: rgba(20, 40, 61, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--putih);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(0)
+        }
+
+        /* Saat di-scroll: topbar tersembunyi ke atas */
+        .atas.sembunyi {
+            transform: translateY(-100%)
+        }
+
+        /* Saat kursor berada di area topbar atau di-hover: topbar muncul kembali */
+        .atas.sembunyi:hover,
+        .atas.muncul {
+            transform: translateY(0) !important
         }
 
         .bar {
@@ -207,15 +239,11 @@
         }
 
         .merek .ck {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: var(--putih);
-            display: grid;
-            place-items: center;
-            font: italic 800 1.25rem var(--judul);
-            color: var(--oranye);
-            flex: none
+            height: 56px;
+            width: auto;
+            flex: none;
+            display: block;
+            object-fit: contain
         }
 
         .merek span {
@@ -268,7 +296,8 @@
         .hero {
             background: var(--navy);
             color: var(--putih);
-            padding-top: 34px;
+            margin-top: calc(-120px - env(safe-area-inset-top, 0px));
+            padding-top: calc(180px + env(safe-area-inset-top, 0px) + 40px);
             position: relative;
             overflow: hidden
         }
@@ -290,7 +319,8 @@
             position: relative;
             display: grid;
             gap: 18px;
-            align-items: center
+            align-items: center;
+            padding-top: 24px;
         }
 
         .hero h1 {
@@ -313,14 +343,15 @@
         .coba label {
             font-weight: 700;
             display: block;
-            margin-bottom: 6px
+            margin-bottom: 10px
         }
 
         .coba .baris {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
-            max-width: 430px
+            max-width: 430px;
+            padding-bottom: 30px;
         }
 
         .coba input {
@@ -1263,8 +1294,7 @@
     <header class="atas">
         <div class="bar">
             <a class="merek" href="#beranda" aria-label="Captain Konveksi, ke bagian atas">
-                <div class="ck" aria-hidden="true">CK</div>
-                <span><b>captain</b> konveksi</span>
+                <img src="Logo.png" alt="Logo Captain Konveksi" class="ck">
             </a>
             <a class="btn btn-utama" href="#pesan">Pesan sekarang</a>
         </div>
@@ -1483,6 +1513,13 @@
                             id="fAlamat" rows="3" autocomplete="street-address"></textarea></div>
                     <div class="f"><label for="fCatatan">Catatan desain <small>(warna, nama punggung, ukuran khusus, dan
                                 lain-lain)</small></label><textarea id="fCatatan" rows="4"></textarea></div>
+                    <div class="f">
+                        <label for="fotoDesain">Contoh desain / logo pakaian <small>(opsional, format gambar)</small></label>
+                        <input type="file" id="fotoDesain" accept="image/*">
+                        <div style="margin-top: 8px;">
+                            <img id="imgPreview" alt="Pratinjau Desain" style="display: none; max-width: 100%; max-height: 240px; border-radius: 6px; border: 1px solid var(--garis); object-fit: contain;">
+                        </div>
+                    </div>
 
                     <h3>Rencana bayar</h3>
                     <div class="grid2">
@@ -2023,10 +2060,58 @@
             $('fAmbil').addEventListener('change', function () { $('boxAlamat').hidden = this.selectedIndex === 0 });
             gantiProduk();
 
+            // Preview Gambar Desain
+            $('fotoDesain').addEventListener('change', function () {
+                var f = this.files && this.files[0];
+                var img = $('imgPreview');
+                if (f) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                    };
+                    reader.readAsDataURL(f);
+                } else {
+                    img.src = '';
+                    img.style.display = 'none';
+                }
+            });
+
+            // API Key ImgBB (dari apikey.md)
+            var IMGBB_API_KEY = '83583ca6b24c17df8995b060b631faa6';
+
+            // Fungsi Asynchronous Upload ke ImgBB
+            async function uploadGambar() {
+                var fileInput = $('fotoDesain');
+                if (!fileInput || !fileInput.files || !fileInput.files[0]) {
+                    return null;
+                }
+                var file = fileInput.files[0];
+                var formData = new FormData();
+                formData.append('key', IMGBB_API_KEY);
+                formData.append('image', file);
+
+                try {
+                    var response = await fetch('https://api.imgbb.com/1/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    var data = await response.json();
+                    if (data && data.success && data.data && data.data.url) {
+                        return data.data.url;
+                    }
+                    console.error('Upload ImgBB gagal:', data);
+                    return null;
+                } catch (err) {
+                    console.error('Gagal mengunggah gambar ke ImgBB:', err);
+                    return null;
+                }
+            }
+
             var TEKSNOTA = '';
             function tgl(v) { if (!v) return ''; var d = new Date(v + 'T00:00:00'); return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) }
             function hariIni() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) }
-            $('formPesan').addEventListener('submit', function (e) {
+            $('formPesan').addEventListener('submit', async function (e) {
                 e.preventDefault();
                 var o = baca(), g = $('fGalat');
                 var nama = $('fNama').value.trim(), wa = $('fWa').value.replace(/[^\d+]/g, ''), kirim = $('fAmbil').selectedIndex === 1, alamat = $('fAlamat').value.trim();
@@ -2037,6 +2122,28 @@
                 else if (kirim && alamat.length < 10) salah = 'Alamat pengiriman belum lengkap.';
                 if (salah) { g.textContent = salah; g.scrollIntoView({ block: 'center' }); return }
                 g.textContent = '';
+
+                // Ubah teks tombol submit sementara saat proses unggah berlangsung
+                var btnSubmit = e.target.querySelector('button[type="submit"]');
+                var teksAwal = btnSubmit ? btnSubmit.textContent : 'Buat nota pesanan';
+                var adaFile = $('fotoDesain') && $('fotoDesain').files && $('fotoDesain').files.length > 0;
+                if (btnSubmit && adaFile) {
+                    btnSubmit.disabled = true;
+                    btnSubmit.textContent = 'Mengunggah gambar...';
+                }
+
+                var urlGambar = null;
+                try {
+                    urlGambar = await uploadGambar();
+                } catch (err) {
+                    console.error('Error proses upload:', err);
+                } finally {
+                    if (btnSubmit) {
+                        btnSubmit.disabled = false;
+                        btnSubmit.textContent = teksAwal;
+                    }
+                }
+
                 var hi = hariIni(), no = 'CK-' + hi.slice(2).replace(/-/g, '') + '-' + Math.floor(1000 + Math.random() * 9000);
                 var baris = [['Nama', nama], ['WhatsApp', wa]];
                 if ($('fInstansi').value.trim()) baris.push(['Tim / instansi', $('fInstansi').value.trim()]);
@@ -2047,15 +2154,30 @@
                 baris.push(['Pengambilan', $('fAmbil').value]);
                 if (kirim) baris.push(['Alamat', alamat]);
                 if ($('fCatatan').value.trim()) baris.push(['Catatan desain', $('fCatatan').value.trim()]);
+                if (urlGambar) baris.push(['Contoh Desain', urlGambar]);
                 baris.push(['Cara bayar', $('fMetode').value], ['Skema', $('fSkema').value]);
                 baris.push(['Perkiraan harga', o.total ? rp(o.total) + ' (' + o.qty + ' × ' + rp(o.sat) + '), belum termasuk ongkir' : 'Menunggu penawaran admin']);
+
                 $('nota').innerHTML = '<div class="no">Nota ' + no + '</div><p style="color:var(--redup)">Dibuat ' + tgl(hi) + '. Belum sah sampai dikonfirmasi admin.</p><table>' +
-                    baris.map(function (b) { return '<tr><td>' + b[0] + '</td><td>' + esc(b[1]).replace(/\n/g, '<br>') + '</td></tr>' }).join('') + '</table>';
-                TEKSNOTA = 'Halo Admin Captain Konveksi, saya mau pesan.\n\n*Nota ' + no + '*\n' + baris.map(function (b) { return b[0] + ': ' + b[1] }).join('\n') + '\n\nGambar desain saya kirim setelah pesan ini. Mohon konfirmasi harga, tanggal jadi, dan tujuan pembayarannya. Terima kasih.';
-                $('btnKirimWa').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(TEKSNOTA);
+                    baris.map(function (b) { 
+                        var isi = b[0] === 'Contoh Desain' ? '<a href="' + esc(b[1]) + '" target="_blank" rel="noopener">' + esc(b[1]) + '</a>' : esc(b[1]).replace(/\n/g, '<br>');
+                        return '<tr><td>' + b[0] + '</td><td>' + isi + '</td></tr>'; 
+                    }).join('') + '</table>';
+
+                var barisTanpaGambar = baris.filter(function (b) { return b[0] !== 'Contoh Desain'; });
+                var barisDesain = urlGambar ? '\n*Contoh Desain:* ' + urlGambar : '\n\nGambar desain saya kirim setelah pesan ini.';
+
+                TEKSNOTA = 'Halo Admin Captain Konveksi, saya mau pesan.\n\n*Nota ' + no + '*\n' + 
+                    barisTanpaGambar.map(function (b) { return b[0] + ': ' + b[1] }).join('\n') + 
+                    barisDesain + 
+                    '\n\nMohon konfirmasi harga, tanggal jadi, dan tujuan pembayarannya. Terima kasih.';
+
+                var waUrl = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(TEKSNOTA);
+                $('btnKirimWa').href = waUrl;
                 $('bNo').value = no; $('bNama').value = nama; $('bMetode').value = $('fMetode').value; $('bTanggal').value = hi;
                 $('notaKosong').hidden = true; $('notaIsi').hidden = false; $('bHasil').hidden = true;
                 ke('bayar');
+                window.open(waUrl, '_blank');
             });
             $('btnSalin').addEventListener('click', function () {
                 var b = this, ok = function () { b.textContent = 'Nota tersalin'; setTimeout(function () { b.textContent = 'Salin nota' }, 2000) };
