@@ -1,0 +1,2080 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset=utf8>
+    <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <style>
+        :root {
+            color-scheme: light;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font: 14px -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #faf9f5;
+            color: #141413
+        }
+
+        img {
+            max-width: 100%
+        }
+
+        [hidden]:not([hidden=until-found i]) {
+            display: none !important
+        }
+    </style>
+</head>
+
+<body>
+    <title>Captain Konveksi (Copy)</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,800;1,800&family=Bebas+Neue&family=Black+Ops+One&family=Graduate&family=Pacifico&family=Permanent+Marker&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Racing+Sans+One&display=swap">
+    <style>
+        /* Tata letak: satu halaman rata kiri. Header navy menempel, blok miring oranye dari logo CK, harga ditulis seperti label gantung baju, selebihnya polos tanpa kotak-kotak. */
+        :root {
+            color-scheme: light;
+            --oranye: #F4691A;
+            --oranye2: #D9560B;
+            --kuning: #FFC629;
+            --navy: #14283D;
+            --navy2: #1D3956;
+            --biru: #DDEAF3;
+            --kertas: #F5F9FC;
+            --putih: #fff;
+            --teks: #1A2430;
+            --redup: #52626F;
+            --garis: #C3D3DF;
+            --hijau: #128C4A;
+            --hijau2: #0E733C;
+            --merah: #C0281C;
+            --terang: #D5E1EB;
+            --judul: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
+            --isi: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --tulis: 'Permanent Marker', 'Comic Sans MS', cursive;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 108px
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--isi);
+            color: var(--teks);
+            background: var(--kertas);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%
+        }
+
+        img,
+        svg {
+            max-width: 100%;
+            display: block
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--judul);
+            font-weight: 800;
+            line-height: 1.02;
+            margin: 0;
+            text-wrap: balance
+        }
+
+        h2 {
+            font-size: clamp(2.1rem, 7.5vw, 3.3rem);
+            font-style: italic;
+            text-transform: uppercase
+        }
+
+        h3 {
+            font-size: 1.45rem
+        }
+
+        p {
+            margin: 0 0 .8em
+        }
+
+        a {
+            color: inherit
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-inline: 16px
+        }
+
+        .bagian {
+            padding-block: 52px
+        }
+
+        .lead {
+            color: var(--redup);
+            max-width: 60ch;
+            margin-top: 10px
+        }
+
+        :focus-visible {
+            outline: 3px solid var(--kuning);
+            outline-offset: 2px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font: 700 1rem var(--isi);
+            padding: 13px 20px;
+            border-radius: 6px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            text-decoration: none;
+            min-height: 48px;
+            text-align: center
+        }
+
+        .btn-utama {
+            background: var(--oranye);
+            color: var(--putih)
+        }
+
+        .btn-utama:hover {
+            background: var(--oranye2)
+        }
+
+        .btn-wa {
+            background: var(--hijau);
+            color: var(--putih)
+        }
+
+        .btn-wa:hover {
+            background: var(--hijau2)
+        }
+
+        .btn-garis {
+            background: transparent;
+            border-color: currentColor;
+            color: inherit
+        }
+
+        .btn-terang {
+            background: var(--putih);
+            color: var(--navy)
+        }
+
+        /* header */
+        .atas {
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 50;
+            background: var(--navy);
+            color: var(--putih)
+        }
+
+        .bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 16px;
+            max-width: 1100px;
+            margin: 0 auto
+        }
+
+        .merek {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            min-width: 0
+        }
+
+        .merek .ck {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--putih);
+            display: grid;
+            place-items: center;
+            font: italic 800 1.25rem var(--judul);
+            color: var(--oranye);
+            flex: none
+        }
+
+        .merek span {
+            font: 800 clamp(1.05rem, 4.6vw, 1.35rem) var(--judul);
+            white-space: nowrap
+        }
+
+        .merek b {
+            color: var(--kuning)
+        }
+
+        .bar .btn {
+            white-space: nowrap;
+            padding: 8px 12px;
+            min-height: 40px;
+            font-size: .9rem;
+            flex: none
+        }
+
+        .menu {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            padding: 0 16px 10px;
+            max-width: 1100px;
+            margin: 0 auto;
+            scrollbar-width: none
+        }
+
+        .menu::-webkit-scrollbar {
+            display: none
+        }
+
+        .menu a {
+            white-space: nowrap;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: .9rem;
+            color: var(--terang);
+            padding: 4px 0;
+            border-bottom: 2px solid transparent
+        }
+
+        .menu a:hover {
+            color: var(--putih);
+            border-color: var(--kuning)
+        }
+
+        /* hero */
+        .hero {
+            background: var(--navy);
+            color: var(--putih);
+            padding-top: 34px;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero::before {
+            display: none;
+            content: "";
+            position: absolute;
+            right: -14%;
+            top: -20%;
+            width: 60%;
+            height: 150%;
+            background: var(--oranye);
+            border-left: 22px solid var(--kuning);
+            transform: skewX(-14deg)
+        }
+
+        .hero .wrap {
+            position: relative;
+            display: grid;
+            gap: 18px;
+            align-items: center
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 13vw, 5.8rem);
+            font-style: italic;
+            text-transform: uppercase
+        }
+
+        .hero h1 span {
+            display: block
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            max-width: 42ch;
+            margin: 14px 0 18px;
+            color: var(--terang)
+        }
+
+        .coba label {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 6px
+        }
+
+        .coba .baris {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            max-width: 430px
+        }
+
+        .coba input {
+            flex: 1 1 150px;
+            min-width: 0;
+            font: 600 1rem var(--isi);
+            padding: 12px;
+            border-radius: 6px;
+            border: 0;
+            background: var(--putih);
+            color: var(--teks)
+        }
+
+        .peraga {
+            position: relative;
+            justify-self: center;
+            width: min(330px, 80vw);
+            padding-bottom: 22px
+        }
+
+        .peraga svg {
+            position: relative;
+            filter: drop-shadow(0 16px 20px rgba(0, 0, 0, .35))
+        }
+
+        .peraga::before {
+            content: "";
+            position: absolute;
+            top: -18px;
+            bottom: -40px;
+            left: 34%;
+            right: -60vw;
+            background: var(--oranye);
+            border-left: 18px solid var(--kuning);
+            transform: skewX(-14deg)
+        }
+
+        .coret {
+            z-index: 1
+        }
+
+        .coret {
+            position: absolute;
+            left: -4px;
+            top: 6px;
+            font: 400 1.05rem/1.15 var(--tulis);
+            color: var(--putih);
+            transform: rotate(-7deg);
+            max-width: 9ch
+        }
+
+        .cerita {
+            position: relative;
+            background: var(--putih);
+            color: var(--teks);
+            border-top: 5px solid var(--kuning)
+        }
+
+        .cerita p {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 16px;
+            font-size: 1rem
+        }
+
+        /* produk */
+        .daftar {
+            display: grid;
+            gap: 0;
+            margin-top: 22px;
+            border-top: 2px solid var(--navy)
+        }
+
+        .daftar button {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2px 12px;
+            align-items: baseline;
+            text-align: left;
+            font: inherit;
+            color: inherit;
+            background: none;
+            border: 0;
+            border-bottom: 2px solid var(--garis);
+            padding: 14px 10px;
+            cursor: pointer
+        }
+
+        .daftar button b {
+            font: 800 1.5rem var(--judul);
+            text-transform: uppercase
+        }
+
+        .daftar button small {
+            grid-column: 1;
+            color: var(--redup);
+            font-size: .9rem
+        }
+
+        .daftar button .mulai {
+            grid-row: 1/3;
+            grid-column: 2;
+            align-self: center;
+            text-align: right;
+            font-size: .82rem;
+            color: var(--redup)
+        }
+
+        .daftar button .mulai strong {
+            display: block;
+            font: 800 1.5rem var(--judul);
+            color: var(--oranye2)
+        }
+
+        .daftar button[aria-selected=true] {
+            background: var(--navy);
+            color: var(--putih);
+            border-color: var(--navy)
+        }
+
+        .daftar button[aria-selected=true] small,
+        .daftar button[aria-selected=true] .mulai {
+            color: var(--terang)
+        }
+
+        .daftar button[aria-selected=true] .mulai strong {
+            color: var(--kuning)
+        }
+
+        .rinci {
+            background: var(--putih);
+            padding: 22px 16px;
+            border: 2px solid var(--navy);
+            border-top: 0;
+            display: grid;
+            gap: 22px
+        }
+
+        .spek {
+            display: grid;
+            gap: 10px;
+            margin: 12px 0 0
+        }
+
+        .spek dt {
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .spek dd {
+            margin: 0;
+            color: var(--redup)
+        }
+
+        .harga {
+            display: grid;
+            gap: 10px;
+            margin-top: 10px
+        }
+
+        .tag {
+            position: relative;
+            background: var(--biru);
+            border-radius: 4px;
+            padding: 12px 14px 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px
+        }
+
+        .tag::before {
+            content: "";
+            position: absolute;
+            left: 11px;
+            top: 50%;
+            width: 9px;
+            height: 9px;
+            margin-top: -5px;
+            border-radius: 50%;
+            background: var(--putih);
+            box-shadow: inset 0 0 0 2px var(--navy)
+        }
+
+        .tag b {
+            display: block
+        }
+
+        .tag small {
+            color: var(--redup)
+        }
+
+        .tag .rp {
+            font: 800 1.8rem var(--judul);
+            color: var(--oranye2);
+            white-space: nowrap
+        }
+
+        .tambah {
+            margin: 12px 0 0;
+            padding-left: 18px;
+            font-size: .92rem
+        }
+
+        .catatan {
+            font-size: .86rem;
+            color: var(--redup);
+            margin-top: 14px
+        }
+
+        .tombolrow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px
+        }
+
+        /* studio */
+        #studio {
+            background: var(--navy);
+            color: var(--putih)
+        }
+
+        #studio .lead {
+            color: var(--terang)
+        }
+
+        .studio {
+            display: grid;
+            gap: 14px;
+            margin-top: 20px
+        }
+
+        .kanvas {
+            background: var(--biru);
+            border-radius: 6px;
+            padding: 8px;
+            position: sticky;
+            top: calc(96px + env(safe-area-inset-top, 0px));
+            z-index: 5
+        }
+
+        .kanvas svg {
+            width: 100%;
+            height: auto;
+            max-height: 34vh;
+            margin: 0 auto
+        }
+
+        .sisi {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 6px
+        }
+
+        .sisi button {
+            font: 700 .85rem var(--isi);
+            padding: 7px 12px;
+            border-radius: 4px;
+            border: 2px solid var(--navy);
+            background: transparent;
+            color: var(--navy);
+            cursor: pointer
+        }
+
+        .sisi button[aria-pressed=true] {
+            background: var(--navy);
+            color: var(--putih)
+        }
+
+        .kontrol {
+            background: var(--navy2);
+            border-radius: 6px;
+            min-width: 0
+        }
+
+        .ktab {
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            border-bottom: 2px solid var(--navy)
+        }
+
+        .ktab::-webkit-scrollbar {
+            display: none
+        }
+
+        .ktab button {
+            flex: 1 0 auto;
+            font: 700 .92rem var(--isi);
+            padding: 13px 14px;
+            background: none;
+            border: 0;
+            border-bottom: 4px solid transparent;
+            color: var(--terang);
+            cursor: pointer;
+            white-space: nowrap
+        }
+
+        .ktab button[aria-selected=true] {
+            color: var(--putih);
+            border-color: var(--kuning)
+        }
+
+        .kisi {
+            padding: 16px;
+            display: grid;
+            gap: 16px
+        }
+
+        .kisi .lbl {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px
+        }
+
+        .pil {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px
+        }
+
+        .pil button {
+            font: 600 .9rem var(--isi);
+            padding: 9px 13px;
+            min-height: 42px;
+            border-radius: 4px;
+            border: 2px solid rgba(255, 255, 255, .3);
+            background: transparent;
+            color: var(--putih);
+            cursor: pointer
+        }
+
+        .pil button[aria-pressed=true] {
+            background: var(--putih);
+            color: var(--navy);
+            border-color: var(--putih)
+        }
+
+        .warna {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            align-items: center
+        }
+
+        .warna button {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, .5);
+            cursor: pointer;
+            padding: 0
+        }
+
+        .warna button[aria-pressed=true] {
+            box-shadow: 0 0 0 3px var(--navy2), 0 0 0 6px var(--kuning)
+        }
+
+        .warna input[type=color] {
+            width: 40px;
+            height: 36px;
+            border: 0;
+            background: none;
+            padding: 0;
+            cursor: pointer
+        }
+
+        .corak {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(78px, 1fr));
+            gap: 8px
+        }
+
+        .corak button {
+            background: var(--biru);
+            border: 3px solid transparent;
+            border-radius: 4px;
+            padding: 4px 2px 6px;
+            cursor: pointer;
+            font: 600 .74rem/1.2 var(--isi);
+            color: var(--navy)
+        }
+
+        .corak button svg {
+            width: 54px;
+            margin: 0 auto 2px
+        }
+
+        .corak button[aria-pressed=true] {
+            border-color: var(--kuning);
+            background: var(--putih)
+        }
+
+        .huruf {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+            gap: 8px
+        }
+
+        .huruf button {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, .3);
+            border-radius: 4px;
+            padding: 8px 4px;
+            cursor: pointer;
+            color: var(--putih)
+        }
+
+        .huruf button span {
+            display: block;
+            font-size: 1.4rem;
+            line-height: 1.2
+        }
+
+        .huruf button small {
+            font: 600 .76rem var(--isi);
+            color: var(--terang)
+        }
+
+        .huruf button[aria-pressed=true] {
+            background: var(--putih);
+            color: var(--navy);
+            border-color: var(--putih)
+        }
+
+        .huruf button[aria-pressed=true] small {
+            color: var(--redup)
+        }
+
+        .dua {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px
+        }
+
+        .kisi input[type=text] {
+            width: 100%;
+            font: 600 1rem var(--isi);
+            padding: 11px;
+            border-radius: 4px;
+            border: 0;
+            background: var(--putih);
+            color: var(--teks)
+        }
+
+        .kisi label.kecil {
+            font-size: .85rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px
+        }
+
+        .kisi input[type=file] {
+            color: var(--putih);
+            max-width: 100%;
+            font: 500 .9rem var(--isi)
+        }
+
+        .ket {
+            font-size: .85rem;
+            color: var(--terang);
+            margin: 6px 0 0
+        }
+
+        .aksi {
+            display: grid;
+            gap: 8px;
+            padding: 0 16px 16px
+        }
+
+        .pesan {
+            font-size: .9rem;
+            font-weight: 600;
+            color: var(--kuning);
+            margin: 0 16px 12px
+        }
+
+        .pesan:empty {
+            display: none
+        }
+
+        .hasil {
+            background: var(--putih);
+            color: var(--teks);
+            border-radius: 4px;
+            padding: 12px;
+            margin: 0 16px 16px
+        }
+
+        .hasil img {
+            width: 100%
+        }
+
+        .hasil p {
+            margin: 8px 0 0;
+            font-size: .9rem
+        }
+
+        /* langkah */
+        .langkah {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0 0;
+            display: grid;
+            gap: 0;
+            counter-reset: l;
+            max-width: 720px
+        }
+
+        .langkah li {
+            counter-increment: l;
+            padding: 0 0 22px 58px;
+            position: relative;
+            border-left: 3px solid var(--garis);
+            margin-left: 20px
+        }
+
+        .langkah li:last-child {
+            border-color: transparent;
+            padding-bottom: 0
+        }
+
+        .langkah li::before {
+            content: counter(l);
+            position: absolute;
+            left: -22px;
+            top: -4px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--oranye);
+            color: var(--putih);
+            font: 800 1.5rem/40px var(--judul);
+            text-align: center
+        }
+
+        .langkah b {
+            display: block;
+            font-size: 1.08rem
+        }
+
+        .langkah span {
+            color: var(--redup)
+        }
+
+        .lain {
+            margin-top: 26px;
+            padding: 14px 16px;
+            background: var(--biru);
+            border-left: 6px solid var(--oranye);
+            max-width: 720px
+        }
+
+        /* form */
+        #pesan {
+            background: var(--biru)
+        }
+
+        .form {
+            background: var(--putih);
+            border-radius: 6px;
+            padding: 18px 16px;
+            margin-top: 22px;
+            display: grid;
+            gap: 16px
+        }
+
+        .form h3 {
+            border-bottom: 2px solid var(--garis);
+            padding-bottom: 8px
+        }
+
+        .f {
+            display: grid;
+            gap: 5px;
+            min-width: 0
+        }
+
+        .f label,
+        .f .lbl {
+            font-weight: 700;
+            font-size: .95rem
+        }
+
+        .f small {
+            color: var(--redup);
+            font-weight: 500
+        }
+
+        .f input,
+        .f select,
+        .f textarea {
+            font: 500 1rem var(--isi);
+            padding: 12px;
+            border: 2px solid var(--garis);
+            border-radius: 4px;
+            width: 100%;
+            background: var(--putih);
+            color: var(--teks)
+        }
+
+        .f input:focus,
+        .f select:focus,
+        .f textarea:focus {
+            border-color: var(--oranye);
+            outline: 0
+        }
+
+        .grid2 {
+            display: grid;
+            gap: 14px
+        }
+
+        .ukuran {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px
+        }
+
+        .ukuran label {
+            text-align: center;
+            font-weight: 700;
+            font-size: .85rem
+        }
+
+        .ukuran input {
+            text-align: center;
+            padding: 10px 2px
+        }
+
+        .cek {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+
+        .cek label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid var(--garis);
+            border-radius: 4px;
+            padding: 10px 12px;
+            font-weight: 600;
+            font-size: .92rem;
+            cursor: pointer;
+            min-height: 44px
+        }
+
+        .cek input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--oranye);
+            padding: 0
+        }
+
+        .total {
+            background: var(--navy);
+            color: var(--putih);
+            border-radius: 4px;
+            padding: 16px;
+            display: grid;
+            gap: 4px
+        }
+
+        .total .angka {
+            font: 800 2.4rem var(--judul);
+            color: var(--kuning);
+            line-height: 1
+        }
+
+        .total small {
+            color: var(--terang)
+        }
+
+        .galat {
+            color: var(--merah);
+            font-weight: 700;
+            font-size: .92rem;
+            margin: 0
+        }
+
+        .galat:empty {
+            display: none
+        }
+
+        /* nota */
+        .nota {
+            background: var(--putih);
+            padding: 20px 16px;
+            margin-top: 22px;
+            border-top: 10px solid var(--oranye);
+            font-size: .95rem
+        }
+
+        .nota table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        .nota td {
+            padding: 7px 0;
+            border-bottom: 1px dashed var(--garis);
+            vertical-align: top;
+            overflow-wrap: anywhere
+        }
+
+        .nota td:first-child {
+            color: var(--redup);
+            width: 38%;
+            padding-right: 8px
+        }
+
+        .nota .no {
+            font: 800 1.6rem var(--judul);
+            color: var(--navy)
+        }
+
+        .kosong {
+            background: var(--putih);
+            border: 2px dashed var(--garis);
+            padding: 22px 16px;
+            margin-top: 22px;
+            color: var(--redup)
+        }
+
+        .aman {
+            background: #FFF4D6;
+            border-left: 6px solid var(--kuning);
+            padding: 12px 14px;
+            font-size: .92rem;
+            margin: 14px 0;
+            color: var(--teks)
+        }
+
+        /* info */
+        #info {
+            background: var(--putih)
+        }
+
+        .fakta {
+            margin: 22px 0 0;
+            display: grid;
+            gap: 0;
+            border-top: 2px solid var(--navy)
+        }
+
+        .fakta div {
+            display: grid;
+            gap: 2px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--garis)
+        }
+
+        .fakta dt {
+            font-weight: 700;
+            color: var(--navy)
+        }
+
+        .fakta dd {
+            margin: 0;
+            color: var(--redup)
+        }
+
+        details {
+            border-bottom: 1px solid var(--garis)
+        }
+
+        summary {
+            font-weight: 700;
+            padding: 14px 0;
+            cursor: pointer
+        }
+
+        details p {
+            color: var(--redup);
+            max-width: 65ch
+        }
+
+        .temui {
+            display: grid;
+            gap: 10px;
+            margin-top: 16px
+        }
+
+        .temui a {
+            display: grid;
+            gap: 0;
+            text-decoration: none;
+            padding: 14px 16px;
+            border-radius: 6px;
+            color: var(--putih)
+        }
+
+        .temui a b {
+            font: 800 1.5rem var(--judul);
+            text-transform: uppercase
+        }
+
+        .temui a span {
+            font-size: .92rem;
+            overflow-wrap: anywhere
+        }
+
+        .t-wa {
+            background: var(--hijau)
+        }
+
+        .t-ig {
+            background: var(--navy)
+        }
+
+        .t-sp {
+            background: var(--oranye2)
+        }
+
+        footer {
+            background: var(--navy);
+            color: var(--terang);
+            padding-block: 30px 96px;
+            font-size: .92rem
+        }
+
+        footer b {
+            color: var(--putih)
+        }
+
+        footer a {
+            color: var(--putih)
+        }
+
+        .wa-apung {
+            position: fixed;
+            right: 14px;
+            bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+            z-index: 60;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .3);
+            border-radius: 99px
+        }
+
+        @media(min-width:820px) {
+            .bagian {
+                padding-block: 76px
+            }
+
+            .hero .wrap {
+                grid-template-columns: 1.15fr .85fr
+            }
+
+            .hero::before {
+                display: block
+            }
+
+            .peraga::before {
+                display: none
+            }
+
+            .coret {
+                left: -40px;
+                top: 30px;
+                font-size: 1.25rem
+            }
+
+            .cerita p {
+                font-size: 1.1rem;
+                padding-block: 22px
+            }
+
+            .daftar {
+                grid-template-columns: repeat(4, 1fr)
+            }
+
+            .daftar button {
+                border-right: 2px solid var(--garis);
+                grid-template-columns: 1fr;
+                padding: 16px
+            }
+
+            .daftar button:first-child {
+                border-left: 2px solid var(--garis)
+            }
+
+            .daftar button .mulai {
+                grid-row: auto;
+                grid-column: 1;
+                text-align: left;
+                margin-top: 6px
+            }
+
+            .rinci {
+                grid-template-columns: 1fr 1fr;
+                padding: 28px
+            }
+
+            .studio {
+                grid-template-columns: 1fr 1fr;
+                align-items: start
+            }
+
+            .kanvas {
+                top: calc(112px + env(safe-area-inset-top, 0px));
+                padding: 14px
+            }
+
+            .kanvas svg {
+                max-height: 60vh
+            }
+
+            .grid2 {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .form {
+                padding: 28px
+            }
+
+            .fakta div {
+                grid-template-columns: 220px 1fr;
+                gap: 16px
+            }
+
+            .temui {
+                grid-template-columns: repeat(3, 1fr)
+            }
+
+            .aksi {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            html {
+                scroll-behavior: auto
+            }
+        }
+    </style>
+
+    <header class="atas">
+        <div class="bar">
+            <a class="merek" href="#beranda" aria-label="Captain Konveksi, ke bagian atas">
+                <div class="ck" aria-hidden="true">CK</div>
+                <span><b>captain</b> konveksi</span>
+            </a>
+            <a class="btn btn-utama" href="#pesan">Pesan sekarang</a>
+        </div>
+        <nav class="menu" aria-label="Menu">
+            <a href="#produk">Produk & harga</a>
+            <a href="#studio">Desain sendiri</a>
+            <a href="#cara">Cara pesan</a>
+            <a href="#pesan">Form pesanan</a>
+            <a href="#bayar">Pembayaran</a>
+            <a href="#info">Info & kontak</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero" id="beranda">
+            <div class="wrap">
+                <div>
+                    <h1><span>Desain sendiri.</span><span>Kami yang jahit.</span></h1>
+                    <p class="sub">Jersey, kemeja PDH/PDL, kaos sablon, dan jaket buat tim, kelas, organisasi, atau
+                        kantor kamu. Bisa pesan mulai 6 pcs.</p>
+                    <div class="coba">
+                        <label for="heroNama">Ketik nama tim kamu, lihat hasilnya di baju</label>
+                        <div class="baris">
+                            <input id="heroNama" type="text" maxlength="14" value="CAPTAIN FC" autocomplete="off">
+                            <a class="btn btn-utama" href="#studio" id="heroLanjut">Lanjut desain</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="peraga">
+                    <svg id="heroBaju" viewBox="0 0 400 420" role="img"
+                        aria-label="Contoh jersey dengan nama tim kamu"></svg>
+                    <span class="coret" aria-hidden="true">warna, corak, font bisa diganti</span>
+                </div>
+            </div>
+            <div class="cerita">
+                <p>Captain Konveksi mulai dari usaha rumahan tahun 2012 di Malang. Sekarang ada 35 sampai 45 orang di
+                    bagian printing, sablon, bordir, dan jahit, dan dalam sehari bisa mengerjakan sekitar 500 kaos dan
+                    jersey. Semua dibuat setelah kamu pesan, jadi desainnya bebas.</p>
+            </div>
+        </div>
+
+        <section class="bagian" id="produk">
+            <div class="wrap">
+                <h2>Produk & harga</h2>
+                <p class="lead">Ada empat produk. Pilih salah satu untuk lihat bahan, model, dan harga lengkapnya.</p>
+                <div class="daftar" role="tablist" aria-label="Pilih produk" id="tabProduk"></div>
+                <div class="rinci" role="tabpanel" id="panelProduk" tabindex="0"></div>
+                <p class="catatan">Harga per pcs dari pricelist 29 Oktober 2025. Harga akhir bisa berubah tergantung
+                    kain, jumlah pesanan, dan cara menghiasnya (printing, sablon, atau bordir). Admin akan memastikan
+                    sebelum kamu bayar.</p>
+            </div>
+        </section>
+
+        <section class="bagian" id="studio">
+            <div class="wrap">
+                <h2>Desain sendiri</h2>
+                <p class="lead">Coba-coba dulu di sini. Ganti warna, corak, font, tulisan, nomor, dan letak logo. Kalau
+                    sudah cocok, simpan gambarnya dan pakai untuk pesan. Nanti tim desain kami merapikan detailnya
+                    sebelum produksi.</p>
+                <div class="studio">
+                    <div class="kanvas">
+                        <svg id="kanvasBaju" viewBox="0 0 400 420" role="img" aria-label="Pratinjau desain kamu"></svg>
+                        <div class="sisi" id="pilSisi">
+                            <button type="button" data-v="front" aria-pressed="true">Depan</button>
+                            <button type="button" data-v="back" aria-pressed="false">Belakang</button>
+                        </div>
+                    </div>
+                    <div class="kontrol">
+                        <div class="ktab" role="tablist" aria-label="Bagian yang mau diatur" id="ktab">
+                            <button type="button" role="tab" data-t="tProduk" aria-selected="true">Produk</button>
+                            <button type="button" role="tab" data-t="tWarna" aria-selected="false">Warna</button>
+                            <button type="button" role="tab" data-t="tCorak" aria-selected="false">Corak</button>
+                            <button type="button" role="tab" data-t="tTulisan" aria-selected="false">Tulisan &
+                                font</button>
+                            <button type="button" role="tab" data-t="tLogo" aria-selected="false">Logo</button>
+                        </div>
+                        <div class="kisi" id="tProduk">
+                            <div><span class="lbl">Mau bikin apa?</span>
+                                <div class="pil" id="pilProduk"></div>
+                            </div>
+                            <div id="boxModel"><span class="lbl">Model</span>
+                                <div class="pil" id="pilModel"></div>
+                            </div>
+                        </div>
+                        <div class="kisi" id="tWarna" hidden>
+                            <div><span class="lbl">Warna dasar</span>
+                                <div class="warna" id="wBase"></div>
+                            </div>
+                            <div><span class="lbl">Warna corak / aksen</span>
+                                <div class="warna" id="wAccent"></div>
+                            </div>
+                            <p class="ket" style="margin:0">Kotak warna paling kanan untuk memilih warna lain di luar
+                                daftar.</p>
+                        </div>
+                        <div class="kisi" id="tCorak" hidden>
+                            <div><span class="lbl">Pilih corak</span>
+                                <div class="corak" id="pilMotif"></div>
+                            </div>
+                        </div>
+                        <div class="kisi" id="tTulisan" hidden>
+                            <div class="dua">
+                                <div><label class="kecil" for="sDepan">Tulisan depan</label><input id="sDepan"
+                                        type="text" maxlength="14"></div>
+                                <div><label class="kecil" for="sNomor">Nomor (boleh kosong)</label><input id="sNomor"
+                                        type="text" maxlength="2" inputmode="numeric"></div>
+                            </div>
+                            <div><label class="kecil" for="sBelakang">Tulisan belakang / nama punggung</label><input
+                                    id="sBelakang" type="text" maxlength="14"></div>
+                            <div><span class="lbl">Jenis font</span>
+                                <div class="huruf" id="pilFont"></div>
+                            </div>
+                            <div><span class="lbl">Warna tulisan</span>
+                                <div class="warna" id="wInk"></div>
+                            </div>
+                        </div>
+                        <div class="kisi" id="tLogo" hidden>
+                            <div><span class="lbl">Letak logo</span>
+                                <div class="pil" id="pilPos"></div>
+                                <p class="ket">Kiri dan kanan dihitung dari sisi orang yang memakai baju.</p>
+                            </div>
+                            <div><span class="lbl">Ukuran logo</span>
+                                <div class="pil" id="pilUkuranLogo"></div>
+                            </div>
+                            <div><label class="lbl" for="sLogo">Unggah logo kamu (opsional)</label>
+                                <input type="file" id="sLogo" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+                                <p class="ket">Belum punya filenya? Pilih letaknya saja, nanti muncul tanda lingkaran
+                                    LOGO di baju. File logo hanya tampil di perangkatmu, jadi kirim file aslinya ke
+                                    admin saat pesan.</p>
+                                <button type="button" class="btn btn-garis" id="btnHapusLogo" hidden
+                                    style="margin-top:8px">Hapus logo</button>
+                            </div>
+                        </div>
+                        <div class="aksi">
+                            <button type="button" class="btn btn-terang" id="btnUnduh">Simpan gambar desain</button>
+                            <button type="button" class="btn btn-utama" id="btnPakai">Pakai desain ini untuk
+                                pesan</button>
+                        </div>
+                        <p class="pesan" id="sPesan" role="status"></p>
+                        <div class="hasil" id="hasilGambar" hidden>
+                            <img id="imgDesain" alt="Gambar desain kamu, tampak depan dan belakang">
+                            <p><b>Gambar siap.</b> Tekan lama gambar ini (di laptop: klik kanan) lalu pilih Simpan
+                                gambar. Kalau tidak bisa, ambil tangkapan layar. Kirim gambarnya ke admin saat pesan.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bagian" id="cara">
+            <div class="wrap">
+                <h2>Cara pesan</h2>
+                <p class="lead">Dari ngobrol sampai barang di tangan, urutannya begini.</p>
+                <ol class="langkah">
+                    <li><b>Ngobrol dulu</b><span>Datang ke tempat produksi, titip lewat reseller, atau chat admin di
+                            WhatsApp dan Instagram. Ceritakan desain, kain, ukuran, dan jumlahnya.</span></li>
+                    <li><b>Isi form pesanan</b><span>Isi form di halaman ini, lalu kirim notanya ke WhatsApp admin
+                            bersama gambar desainmu.</span></li>
+                    <li><b>Admin kasih harga dan tanggal jadi</b><span>Kalau jadwal produksi lagi penuh, kami bilang
+                            dari awal supaya kamu tidak menunggu tanpa kepastian.</span></li>
+                    <li><b>Bayar</b><span>Sesuai kesepakatan dengan admin. Barang diserahkan setelah pembayaran
+                            lunas.</span></li>
+                    <li><b>Kami kerjakan</b><span>Potong pola, printing atau sablon, bordir kalau ada, jahit, lalu
+                            dirapikan dan dikemas. Tiap tahap dicek, yang cacat langsung diganti.</span></li>
+                    <li><b>Ambil atau dikirim</b><span>Di Malang, ambil di tempat produksi. Luar Malang dikirim lewat
+                            ekspedisi atau kargo, nomor resinya kami kirim ke kamu.</span></li>
+                </ol>
+                <p class="lain"><b>Lebih suka belanja di Shopee?</b> Captain Konveksi juga punya toko di Shopee. Pesan
+                    dan bayarnya mengikuti cara Shopee. <a href="https://shopee.co.id/search?keyword=captain%20konveksi"
+                        target="_blank" rel="noopener">Cari toko Captain Konveksi di Shopee</a></p>
+            </div>
+        </section>
+
+        <section class="bagian" id="pesan">
+            <div class="wrap">
+                <h2>Form pesanan</h2>
+                <p class="lead">Isi sekali, hasilnya jadi nota yang tinggal kamu kirim ke WhatsApp admin. Datamu tidak
+                    disimpan di website ini.</p>
+                <form class="form" id="formPesan" novalidate>
+                    <h3>Data kamu</h3>
+                    <div class="grid2">
+                        <div class="f"><label for="fNama">Nama lengkap</label><input id="fNama" autocomplete="name"
+                                required></div>
+                        <div class="f"><label for="fWa">Nomor WhatsApp</label><input id="fWa" type="tel" inputmode="tel"
+                                autocomplete="tel" placeholder="08xxxxxxxxxx" required></div>
+                    </div>
+                    <div class="f"><label for="fInstansi">Tim / organisasi / instansi <small>(boleh
+                                kosong)</small></label><input id="fInstansi" autocomplete="organization"></div>
+
+                    <h3>Pesanan</h3>
+                    <div class="grid2">
+                        <div class="f"><label for="fProduk">Produk</label><select id="fProduk"></select></div>
+                        <div class="f"><label for="fBahan">Bahan</label><select id="fBahan"></select></div>
+                    </div>
+                    <div class="f" id="boxTambah"><span class="lbl">Tambahan model</span>
+                        <div class="cek" id="fTambah"></div>
+                    </div>
+                    <div class="f">
+                        <span class="lbl">Jumlah per ukuran <small>(total minimal 6 pcs)</small></span>
+                        <div class="ukuran" id="fUkuran"></div>
+                        <small>Ukuran lain (anak, 3XL ke atas) tulis di catatan.</small>
+                    </div>
+                    <div class="grid2">
+                        <div class="f"><label for="fTanggal">Dipakai tanggal berapa? <small>(boleh
+                                    kosong)</small></label><input id="fTanggal" type="date"></div>
+                        <div class="f"><label for="fAmbil">Pengambilan</label>
+                            <select id="fAmbil">
+                                <option value="Ambil di tempat produksi (Malang)">Ambil di tempat produksi (Malang)
+                                </option>
+                                <option value="Kirim lewat ekspedisi/kargo">Kirim lewat ekspedisi/kargo (ongkir
+                                    ditanggung pemesan)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="f" id="boxAlamat" hidden><label for="fAlamat">Alamat lengkap pengiriman</label><textarea
+                            id="fAlamat" rows="3" autocomplete="street-address"></textarea></div>
+                    <div class="f"><label for="fCatatan">Catatan desain <small>(warna, nama punggung, ukuran khusus, dan
+                                lain-lain)</small></label><textarea id="fCatatan" rows="4"></textarea></div>
+
+                    <h3>Rencana bayar</h3>
+                    <div class="grid2">
+                        <div class="f"><label for="fMetode">Cara bayar</label>
+                            <select id="fMetode">
+                                <option>Transfer bank</option>
+                                <option>QRIS / e-wallet</option>
+                                <option>Tunai di tempat produksi</option>
+                            </select>
+                        </div>
+                        <div class="f"><label for="fSkema">Skema</label>
+                            <select id="fSkema">
+                                <option>Uang muka (DP) dulu, pelunasan sebelum barang diambil</option>
+                                <option>Lunas di awal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="total" aria-live="polite">
+                        <small id="tRinci">Isi jumlah per ukuran untuk melihat perkiraan harga.</small>
+                        <div class="angka" id="tAngka">Rp0</div>
+                        <small>Perkiraan, belum termasuk ongkir. Harga akhir dipastikan admin.</small>
+                    </div>
+                    <p class="galat" id="fGalat" role="alert"></p>
+                    <button class="btn btn-utama" type="submit">Buat nota pesanan</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="bagian" id="bayar">
+            <div class="wrap">
+                <h2>Pembayaran</h2>
+                <p class="lead">Kirim notamu ke admin. Setelah dicek, admin membalas dengan total akhir dan tujuan
+                    pembayaran.</p>
+                <div class="kosong" id="notaKosong">Belum ada nota. <a href="#pesan"><b>Isi form pesanan</b></a> dulu,
+                    nanti notanya muncul di sini.</div>
+                <div id="notaIsi" hidden>
+                    <div class="nota" id="nota"></div>
+                    <div class="tombolrow">
+                        <a class="btn btn-wa" id="btnKirimWa" target="_blank" rel="noopener">Kirim nota ke WhatsApp
+                            admin</a>
+                        <button class="btn btn-garis" type="button" id="btnSalin">Salin nota</button>
+                    </div>
+                    <div class="aman"><b>Hati-hati penipuan.</b> Nomor rekening dan QRIS hanya dikirim dari WhatsApp
+                        admin <b>0858-4378-5748</b>. Jangan transfer ke tujuan yang dikirim dari nomor lain.</div>
+
+                    <form class="form" id="formBayar" novalidate>
+                        <h3>Sudah bayar? Konfirmasi di sini</h3>
+                        <p style="margin:0;color:var(--redup)">Isi ini supaya admin cepat mencocokkan, lalu lampirkan
+                            foto bukti bayar di chat.</p>
+                        <div class="grid2">
+                            <div class="f"><label for="bNo">Nomor pesanan</label><input id="bNo" required></div>
+                            <div class="f"><label for="bNama">Nama pengirim / pemilik rekening</label><input id="bNama"
+                                    required></div>
+                            <div class="f"><label for="bNominal">Jumlah yang dibayar (Rp)</label><input id="bNominal"
+                                    inputmode="numeric" placeholder="contoh: 500000" required></div>
+                            <div class="f"><label for="bTanggal">Tanggal bayar</label><input id="bTanggal" type="date"
+                                    required></div>
+                            <div class="f"><label for="bJenis">Jenis pembayaran</label><select id="bJenis">
+                                    <option>Uang muka (DP)</option>
+                                    <option>Pelunasan</option>
+                                    <option>Lunas di awal</option>
+                                </select></div>
+                            <div class="f"><label for="bMetode">Cara bayar</label><select id="bMetode">
+                                    <option>Transfer bank</option>
+                                    <option>QRIS / e-wallet</option>
+                                    <option>Tunai di tempat produksi</option>
+                                </select></div>
+                        </div>
+                        <p class="galat" id="bGalat" role="alert"></p>
+                        <button class="btn btn-utama" type="submit">Siapkan pesan konfirmasi</button>
+                        <div id="bHasil" hidden>
+                            <p style="margin:0 0 10px;color:var(--redup)">Pesan konfirmasi siap. Buka WhatsApp, kirim
+                                pesannya, lalu lampirkan foto bukti bayar.</p>
+                            <a class="btn btn-wa" id="bLink" target="_blank" rel="noopener">Buka WhatsApp admin</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="bagian" id="info">
+            <div class="wrap">
+                <h2>Info & kontak</h2>
+                <div class="temui">
+                    <a class="t-wa" href="https://wa.me/6285843785748" target="_blank" rel="noopener"><b>WhatsApp
+                            admin</b><span>0858-4378-5748, untuk tanya dan pesan</span></a>
+                    <a class="t-ig" href="https://www.instagram.com/captainkonveksi.id/" target="_blank"
+                        rel="noopener"><b>Instagram</b><span>@captainkonveksi.id, lihat hasil jadi dan pricelist
+                            terbaru</span></a>
+                    <a class="t-sp" href="https://shopee.co.id/search?keyword=captain%20konveksi" target="_blank"
+                        rel="noopener"><b>Shopee</b><span>Cari toko Captain Konveksi, checkout lewat Shopee</span></a>
+                </div>
+                <dl class="fakta">
+                    <div>
+                        <dt>Jam buka</dt>
+                        <dd>10.00 sampai 18.00 WIB. Pagi hari area depan dipakai pasar, jadi kami baru buka jam 10.</dd>
+                    </div>
+                    <div>
+                        <dt>Lokasi</dt>
+                        <dd>Kota Malang, Jawa Timur. Tempat produksi sekaligus tempat ambil pesanan. Minta titik
+                            lokasinya ke admin sebelum datang.</dd>
+                    </div>
+                    <div>
+                        <dt>Pengiriman</dt>
+                        <dd>Luar Malang dikirim lewat ekspedisi atau kargo yang paling cepat, atau pilihanmu sendiri.
+                            Ongkir ditanggung pemesan.</dd>
+                    </div>
+                    <div>
+                        <dt>Kalau ada yang cacat</dt>
+                        <dd>Tiap tahap produksi dicek. Produk yang cacat kami ganti sebelum sampai ke kamu.</dd>
+                    </div>
+                    <div>
+                        <dt>Mau jadi reseller</dt>
+                        <dd>Boleh. Kumpulkan pesanan pelangganmu, lalu pesan ke kami. Caranya tanya admin.</dd>
+                    </div>
+                    <div>
+                        <dt>Yang biasa pesan</dt>
+                        <dd>Organisasi mahasiswa, klub dan tim olahraga, komunitas, instansi, perusahaan, sampai
+                            perorangan.</dd>
+                    </div>
+                </dl>
+
+                <h3 style="margin-top:36px">Yang sering ditanya</h3>
+                <details>
+                    <summary>Minimal pesan berapa?</summary>
+                    <p>6 pcs untuk semua produk: jersey, kemeja PDH/PDL, kaos sablon, dan jaket.</p>
+                </details>
+                <details>
+                    <summary>Jadinya berapa lama?</summary>
+                    <p>Tergantung jumlah, jenis produk, dan antrean produksi. Admin memberi perkiraan tanggal jadi sejak
+                        awal. Kalau kamu punya tanggal acara, tulis di form supaya kami cek dulu sanggup atau tidak.</p>
+                </details>
+                <details>
+                    <summary>Warna kainnya selalu ada?</summary>
+                    <p>Kain jersey selalu kami stok. Kain kemeja, kaos, dan jaket dibeli sesuai warna pesananmu, jadi
+                        pesan lebih awal kalau butuh warna yang jarang.</p>
+                </details>
+                <details>
+                    <summary>Bisa pesan atasan jersey saja?</summary>
+                    <p>Bisa. Atasan jersey mulai sekitar Rp75.000 per pcs. Harga di daftar adalah harga setelan (atasan
+                        dan celana).</p>
+                </details>
+                <details>
+                    <summary>Belum punya desain, bisa dibantu?</summary>
+                    <p>Bisa. Pakai bagian Desain sendiri di halaman ini sebagai gambaran, lalu konsultasikan dengan
+                        admin.</p>
+                </details>
+                <details>
+                    <summary>Bisa beli lewat marketplace?</summary>
+                    <p>Bisa, Captain Konveksi punya toko di Shopee. Untuk pesanan custom dengan desain sendiri, paling
+                        enak tetap lewat WhatsApp admin supaya detailnya bisa dibahas dulu.</p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <p><b style="font:800 1.5rem var(--judul)">captain konveksi</b><br>Konveksi pakaian custom di Kota Malang,
+                sejak 2012.</p>
+            <p>WhatsApp admin <a href="https://wa.me/6285546456351" target="_blank"
+                    rel="noopener">0858-4378-5748</a><br>
+                Instagram <a href="https://www.instagram.com/captainkonveksi.id/" target="_blank"
+                    rel="noopener">@captainkonveksi.id</a><br>
+                Shopee <a href="https://shopee.co.id/search?keyword=captain%20konveksi" target="_blank"
+                    rel="noopener">Captain Konveksi</a><br>
+                Buka 10.00 sampai 18.00 WIB</p>
+        </div>
+    </footer>
+    <a class="btn btn-wa wa-apung"
+        href="https://wa.me/6285843785748?text=Halo%20Admin%20Captain%20Konveksi%2C%20saya%20mau%20tanya%20soal%20pesanan."
+        target="_blank" rel="noopener">Chat admin</a>
+
+    <script>
+        (function () {
+            "use strict";
+            var WA = '6285843785748';
+            var $ = function (id) { return document.getElementById(id) };
+            var ke = function (id) { $(id).scrollIntoView() };
+            var rp = function (n) { return 'Rp' + Number(n).toLocaleString('id-ID') };
+            var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] }) };
+            var cari = function (arr, k) { for (var i = 0; i < arr.length; i++)if (arr[i][0] === k) return arr[i]; return arr[0] };
+
+            /* ---------- DATA PRODUK ---------- */
+            var P = {
+                jersey: {
+                    nama: 'Jersey', judul: 'Setelan jersey', bahan: 'Dryfit Milano', mulai: 'Rp120.000', sat: 'per setelan',
+                    ringkas: 'Jersey tim dengan printing sublimasi. Warna, corak, nama, dan nomor bebas karena dicetak langsung ke kain.',
+                    spek: [
+                        ['Bahan', 'Dryfit Milano. Polyester ringan berpori kecil, cepat kering, tidak gerah, dan hasil cetaknya tajam.'],
+                        ['Model', 'Setelan (atasan dan celana) atau atasan saja. Lengan pendek atau panjang, kerah biasa atau berkerah, reguler atau oversize.'],
+                        ['Cara menghias', 'Printing sublimasi penuh untuk desain, nama, dan nomor punggung.'],
+                        ['Biasa dipesan untuk', 'Klub dan tim olahraga, turnamen, komunitas, kelas, dan angkatan.']],
+                    tier: [
+                        { n: 'Standard', k: 'Serena, Millano, Benzema', h: 120000 },
+                        { n: 'Premium', k: 'Millano UV, Nike Jarum, N-Tech', h: 125000 },
+                        { n: 'Exclusive', k: 'Embosh, Air Walk', h: 135000 }],
+                    tambah: [['kerah', 'Berkerah', 10000], ['panjang', 'Lengan panjang', 10000], ['oversize', 'Oversize', 10000]],
+                    ket: 'Harga setelan per pcs. Atasan saja mulai sekitar Rp75.000.'
+                },
+                pdh: {
+                    nama: 'Kemeja PDH/PDL', judul: 'Kemeja PDH/PDL', bahan: 'Nagata Drill', mulai: 'Rp130.000', sat: 'sudah termasuk bordir',
+                    ringkas: 'Kemeja seragam untuk organisasi, angkatan, dan instansi, lengkap dengan bordir nama dan logo.',
+                    spek: [
+                        ['Bahan', 'Nagata Drill. Campuran polyester dan katun dengan serat bergaris miring. Agak tebal, kuat, tidak mudah kusut, dan pilihan warnanya banyak.'],
+                        ['Model', 'PDH (lengan pendek) atau PDL (lengan panjang), dengan saku dada.'],
+                        ['Cara menghias', 'Bordir mesin untuk nama, logo, dan tulisan punggung.'],
+                        ['Biasa dipesan untuk', 'Organisasi mahasiswa, angkatan, instansi, perusahaan, dan komunitas.']],
+                    tier: [
+                        { n: 'American Drill + bordir', k: 'Paling hemat', h: 130000 },
+                        { n: 'Castillo Drill + bordir', k: 'Pilihan tengah', h: 135000 },
+                        { n: 'Nagata Drill + bordir', k: 'Paling kuat dan rapi', h: 145000 }],
+                    tambah: [],
+                    ket: 'Harga per pcs, sudah termasuk bordir.'
+                },
+                kaos: {
+                    nama: 'Kaos sablon', judul: 'Kaos sablon', bahan: 'Cotton Combed', mulai: 'Rp55.000', sat: 'sudah termasuk sablon',
+                    ringkas: 'Kaos custom untuk acara, komunitas, dan merchandise. Adem dipakai dan sablonnya menempel rapi.',
+                    spek: [
+                        ['Bahan', 'Cotton Combed. Katun yang seratnya sudah disisir sehingga halus, adem, dan menyerap keringat. Permukaannya rata jadi bagus untuk disablon.'],
+                        ['Model', 'Lengan pendek atau panjang, kerah bulat atau berkerah, reguler atau oversize.'],
+                        ['Cara menghias', 'Sablon sesuai desain kamu.'],
+                        ['Biasa dipesan untuk', 'Kepanitiaan, komunitas, kaos kelas, merchandise, dan acara keluarga.']],
+                    tier: [
+                        { n: 'Polyester + sablon', k: 'Ringan dan paling hemat', h: 55000 },
+                        { n: 'Cotton Combed 30s + sablon', k: 'Lebih tipis dan adem', h: 65000 },
+                        { n: 'Cotton Combed 24s + sablon', k: 'Lebih tebal', h: 70000 }],
+                    tambah: [['kerah', 'Berkerah', 10000], ['panjang', 'Lengan panjang', 5000], ['oversize', 'Oversize', 10000]],
+                    ket: 'Harga per pcs, sudah termasuk sablon.'
+                },
+                jaket: {
+                    nama: 'Jaket', judul: 'Jaket & hoodie', bahan: 'Fleece', mulai: 'Tanya admin', sat: 'dihitung per pesanan',
+                    ringkas: 'Jaket dan hoodie hangat untuk angkatan, komunitas, dan organisasi.',
+                    spek: [
+                        ['Bahan', 'Fleece. Tebal, bagian dalamnya berbulu halus, dan hangat dipakai.'],
+                        ['Model', 'Jaket atau hoodie, warna sesuai pesanan.'],
+                        ['Cara menghias', 'Sablon atau bordir sesuai desain.'],
+                        ['Biasa dipesan untuk', 'Jaket angkatan, komunitas, organisasi, dan perusahaan.']],
+                    tier: [{ n: 'Fleece', k: 'Harga mengikuti model dan jumlah pesanan', h: null }],
+                    tambah: [],
+                    ket: 'Harga jaket dihitung per pesanan. Tanya admin untuk penawarannya.'
+                }
+            };
+            var URUT = ['jersey', 'pdh', 'kaos', 'jaket'];
+
+            /* ---------- KATALOG ---------- */
+            function katalog(k) {
+                var p = P[k];
+                var spek = p.spek.map(function (s) { return '<div><dt>' + s[0] + '</dt><dd>' + s[1] + '</dd></div>' }).join('');
+                var tier = p.tier.map(function (t) { return '<div class="tag"><div><b>' + t.n + '</b><small>' + t.k + '</small></div><div class="rp">' + (t.h ? rp(t.h) : 'Tanya admin') + '</div></div>' }).join('');
+                var tb = p.tambah.length ? '<p style="margin:14px 0 0;font-weight:700">Biaya tambahan per pcs</p><ul class="tambah">' + p.tambah.map(function (t) { return '<li>' + t[1] + ', tambah ' + rp(t[2]) + '</li>' }).join('') + '</ul>' : '';
+                $('panelProduk').innerHTML = '<div><h3>' + p.judul + '</h3><p style="margin-top:8px">' + p.ringkas + '</p><dl class="spek">' + spek + '</dl></div>' +
+                    '<div><h3>Harga per pcs</h3><div class="harga">' + tier + '</div>' + tb + '<p class="catatan">' + p.ket + ' Minimal pesan 6 pcs.</p>' +
+                    '<div class="tombolrow"><button class="btn btn-utama" type="button" data-desain="' + k + '">Desain ' + p.nama.toLowerCase() + '</button><button class="btn btn-garis" type="button" data-pesan="' + k + '">Langsung pesan</button></div></div>';
+                Array.prototype.forEach.call($('tabProduk').children, function (b) { b.setAttribute('aria-selected', b.dataset.k === k) });
+            }
+            $('tabProduk').innerHTML = URUT.map(function (k) { var p = P[k]; return '<button type="button" role="tab" data-k="' + k + '"><b>' + p.nama + '</b><small>Bahan ' + p.bahan + '</small><span class="mulai">' + (k === 'jaket' ? 'harga' : 'mulai') + '<strong>' + p.mulai + '</strong>' + p.sat + '</span></button>' }).join('');
+            $('tabProduk').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) katalog(b.dataset.k) });
+            $('panelProduk').addEventListener('click', function (e) {
+                var d = e.target.closest('[data-desain]'), o = e.target.closest('[data-pesan]');
+                if (d) { S.product = d.dataset.desain; sinkron(); ke('studio') }
+                if (o) { $('fProduk').value = o.dataset.pesan; gantiProduk(); ke('pesan') }
+            });
+            katalog('jersey');
+
+            /* ---------- PILIHAN STUDIO ---------- */
+            /* [kunci, nama, font-family, tebal, faktor lebar huruf, huruf besar semua] */
+            var FONT = [
+                ['barlow', 'Tegas', "'Barlow Condensed'", 800, .5, 1],
+                ['bebas', 'Tinggi ramping', "'Bebas Neue'", 400, .44, 1],
+                ['graduate', 'Kampus', "'Graduate'", 400, .78, 1],
+                ['racing', 'Balap', "'Racing Sans One'", 400, .6, 1],
+                ['blackops', 'Stensil', "'Black Ops One'", 400, .74, 1],
+                ['marker', 'Spidol', "'Permanent Marker'", 400, .7, 1],
+                ['pacifico', 'Tulis sambung', "'Pacifico'", 400, .52, 0]];
+            var CADANG = ",'Arial Narrow',Impact,sans-serif";
+            var MOTIF = [['polos', 'Polos'], ['diagonal', 'Selempang'], ['tegak', 'Garis tegak'], ['tipis', 'Garis tipis'], ['lintang', 'Garis melintang'], ['belah', 'Belah dua'], ['chevron', 'Chevron'], ['zigzag', 'Zigzag'], ['catur', 'Kotak catur'], ['berlian', 'Berlian'], ['titik', 'Titik-titik'], ['gradasi', 'Gradasi'], ['bahu', 'Bahu kontras'], ['lengan', 'Lengan kontras'], ['samping', 'Panel samping']];
+            var POS = [['none', 'Tanpa logo'], ['dkiri', 'Dada kiri'], ['dkanan', 'Dada kanan'], ['tengah', 'Tengah dada'], ['lkiri', 'Lengan kiri'], ['lkanan', 'Lengan kanan'], ['punggung', 'Punggung']];
+            var UKL = [['k', 'Kecil', .75], ['s', 'Sedang', 1], ['b', 'Besar', 1.35]];
+            var WARNA = [['#14283D', 'Navy'], ['#111111', 'Hitam'], ['#FFFFFF', 'Putih'], ['#8A8F98', 'Abu'], ['#F4691A', 'Oranye'], ['#FFC629', 'Kuning'], ['#C81E1E', 'Merah'], ['#7A1F2B', 'Marun'], ['#1E63C8', 'Biru'], ['#0FA3A3', 'Tosca'], ['#1E8F4E', 'Hijau'], ['#6B2FA0', 'Ungu']];
+            var NAMAWARNA = function (h) { for (var i = 0; i < WARNA.length; i++)if (WARNA[i][0].toLowerCase() === String(h).toLowerCase()) return WARNA[i][1]; return h };
+
+            /* ---------- GAMBAR BAJU (SVG) ---------- */
+            function corak(s, u) {
+                var a = s.accent, T = 'x="106" y="40" width="188" height="370"', d = '', b = '';
+                var pat = function (attr, isi) { d = '<pattern id="p' + u + '" patternUnits="userSpaceOnUse" ' + attr + '>' + isi + '</pattern>'; b = '<rect ' + T + ' fill="url(#p' + u + ')"/>' };
+                switch (s.pattern) {
+                    case 'diagonal': b = '<polygon points="70,410 215,40 285,40 140,410" fill="' + a + '"/><polygon points="160,410 305,40 325,40 180,410" fill="' + a + '" opacity=".55"/>'; break;
+                    case 'tegak': pat('x="24" width="34" height="34"', '<rect width="12" height="34" fill="' + a + '"/>'); break;
+                    case 'tipis': pat('x="3" width="14" height="14"', '<rect width="2.5" height="14" fill="' + a + '"/>'); break;
+                    case 'lintang': d = '<pattern id="p' + u + '" patternUnits="userSpaceOnUse" y="20" width="44" height="44"><rect width="44" height="20" fill="' + a + '"/></pattern>'; b = '<rect x="0" y="40" width="400" height="370" fill="url(#p' + u + ')"/>'; break;
+                    case 'belah': b = '<rect x="200" y="40" width="200" height="370" fill="' + a + '"/>'; break;
+                    case 'chevron': b = '<polygon points="100,150 200,235 300,150 300,188 200,273 100,188" fill="' + a + '"/><polygon points="100,206 200,291 300,206 300,220 200,305 100,220" fill="' + a + '" opacity=".55"/>'; break;
+                    case 'zigzag': pat('width="40" height="44"', '<path d="M-2,34 L20,10 L42,34" fill="none" stroke="' + a + '" stroke-width="9"/>'); break;
+                    case 'catur': pat('x="8" width="48" height="48"', '<rect width="24" height="24" fill="' + a + '"/><rect x="24" y="24" width="24" height="24" fill="' + a + '"/>'); break;
+                    case 'berlian': pat('x="20" width="40" height="60"', '<polygon points="20,4 36,30 20,56 4,30" fill="' + a + '"/>'); break;
+                    case 'titik': pat('x="5" width="26" height="26"', '<circle cx="13" cy="13" r="5" fill="' + a + '"/>'); break;
+                    case 'bahu': b = '<path d="M0,40 H400 V118 Q200,176 0,118 Z" fill="' + a + '"/>'; break;
+                    case 'lengan': b = '<rect x="0" y="40" width="106" height="330" fill="' + a + '"/><rect x="294" y="40" width="106" height="330" fill="' + a + '"/>'; break;
+                    case 'samping': b = '<rect x="106" y="150" width="22" height="260" fill="' + a + '"/><rect x="272" y="150" width="22" height="260" fill="' + a + '"/>'; break;
+                }
+                return { defs: d, body: b };
+            }
+            /* o.noText: teks tidak digambar (dipakai saat membuat gambar), o.items: daftar teks, o.spot: tampilkan tanda LOGO */
+            function baju(s, view, u, o) {
+                o = o || {};
+                var p = s.product, depan = view === 'front';
+                var panjang = p === 'jaket' || s.sleeve === 'long';
+                var kerah = p === 'pdh' || (s.collar && p !== 'jaket');
+                var F = cari(FONT, s.font || 'barlow');
+                var fit = function (t, max, w) { return Math.max(11, Math.min(max, w / (Math.max(t.length, 1) * F[4]))) };
+                var tulis = function (t, x, y, fs) {
+                    if (o.items) o.items.push({ t: t, x: x, y: y, fs: fs, fill: s.ink });
+                    return o.noText ? '' : '<text x="' + x + '" y="' + y + '" font-family="' + F[2] + CADANG + '" font-weight="' + F[3] + '" font-size="' + fs + '" text-anchor="middle" fill="' + s.ink + '">' + esc(t) + '</text>';
+                };
+                var ny = depan ? 96 : 74;
+                var d = panjang
+                    ? 'M132,58 L92,72 L20,330 L64,344 L106,196 L106,404 L294,404 L294,196 L336,344 L380,330 L308,72 L268,58 Q200,' + ny + ' 132,58 Z'
+                    : 'M132,58 L92,72 L28,128 L70,182 L106,154 L106,404 L294,404 L294,154 L330,182 L372,128 L308,72 L268,58 Q200,' + ny + ' 132,58 Z';
+                var c = corak(s, u);
+                var G = 'rgba(0,0,0,.3)';
+                var out = '<defs><clipPath id="c' + u + '"><path d="' + d + '"/></clipPath><linearGradient id="g' + u + '" x1="0" y1="0" x2="0" y2="1"><stop offset=".2" stop-color="' + s.base + '"/><stop offset="1" stop-color="' + s.accent + '"/></linearGradient>' + c.defs + '</defs>';
+                if (p === 'jaket' && depan) out += '<path d="M118,70 Q112,2 200,2 Q288,2 282,70 Q200,112 118,70 Z" fill="' + s.base + '"/><path d="M118,70 Q112,2 200,2 Q288,2 282,70 Q200,112 118,70 Z" fill="rgba(0,0,0,.22)"/>';
+                out += '<path d="' + d + '" fill="' + (s.pattern === 'gradasi' ? 'url(#g' + u + ')' : s.base) + '"/><g clip-path="url(#c' + u + ')">' + c.body;
+                if (p === 'jaket') out += '<rect x="100" y="386" width="200" height="20" fill="rgba(0,0,0,.18)"/>';
+                out += '</g><path d="' + d + '" fill="none" stroke="' + G + '" stroke-width="2" stroke-linejoin="round"/>';
+                var sy = panjang ? 196 : 154;
+                out += '<path d="M106,' + sy + ' L106,' + (sy + 70) + ' M294,' + sy + ' L294,' + (sy + 70) + '" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="2"/>';
+                if (p !== 'jaket') out += '<path d="M110,394 L290,394" fill="none" stroke="rgba(0,0,0,.25)" stroke-width="1.5" stroke-dasharray="5 4"/>';
+                if (kerah) {
+                    if (depan) out += '<polygon points="132,58 200,94 168,116 120,72" fill="' + s.accent + '" stroke="' + G + '" stroke-width="1.5"/><polygon points="268,58 200,94 232,116 280,72" fill="' + s.accent + '" stroke="' + G + '" stroke-width="1.5"/>';
+                    else out += '<path d="M132,58 Q200,74 268,58 L274,46 Q200,60 126,46 Z" fill="' + s.accent + '" stroke="' + G + '" stroke-width="1.5"/>';
+                } else if (p !== 'jaket') {
+                    out += '<path d="M132,58 Q200,' + ny + ' 268,58" fill="none" stroke="' + s.accent + '" stroke-width="9" stroke-linecap="round"/>';
+                }
+                if (depan) {
+                    if (p === 'pdh') {
+                        out += '<path d="M200,94 L200,404" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="2"/><path d="M190,100 L190,404 M210,100 L210,404" fill="none" stroke="rgba(0,0,0,.14)" stroke-width="1"/>';
+                        for (var b = 130; b < 400; b += 52) out += '<circle cx="200" cy="' + b + '" r="4" fill="#fff" stroke="rgba(0,0,0,.45)"/>';
+                        [124, 224].forEach(function (x) { out += '<rect x="' + x + '" y="172" width="52" height="58" rx="4" fill="rgba(0,0,0,.06)" stroke="rgba(0,0,0,.35)" stroke-width="1.5"/><path d="M' + x + ',172 h52 v14 l-26,8 l-26,-8 Z" fill="rgba(0,0,0,.12)" stroke="rgba(0,0,0,.35)" stroke-width="1.5"/>' });
+                    } else if (kerah) {
+                        out += '<path d="M200,94 L200,150" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="2"/><circle cx="200" cy="112" r="3.5" fill="#fff" stroke="rgba(0,0,0,.45)"/><circle cx="200" cy="134" r="3.5" fill="#fff" stroke="rgba(0,0,0,.45)"/>';
+                    }
+                    if (p === 'jaket') {
+                        out += '<path d="M188,96 L186,160 M212,96 L214,160" fill="none" stroke="' + s.accent + '" stroke-width="4" stroke-linecap="round"/>';
+                        out += '<path d="M140,300 L260,300 L278,374 L122,374 Z" fill="rgba(0,0,0,.08)" stroke="rgba(0,0,0,.35)" stroke-width="1.5" stroke-linejoin="round"/>';
+                    }
+                } else if (p === 'jaket') {
+                    out += '<path d="M130,58 Q200,72 270,58 L260,150 Q200,180 140,150 Z" fill="' + s.base + '"/><path d="M130,58 Q200,72 270,58 L260,150 Q200,180 140,150 Z" fill="rgba(0,0,0,.2)" stroke="' + G + '" stroke-width="1.5"/>';
+                }
+                /* logo */
+                var pos = s.logoPos || 'none'; if (p === 'pdh' && pos === 'tengah') pos = 'dkiri';
+                var kali = cari(UKL, s.logoSize || 's')[2];
+                var logo = function (cx, cy, z) {
+                    var x = cx - z / 2, y = cy - z / 2;
+                    if (s.logo) return '<image href="' + s.logo + '" x="' + x + '" y="' + y + '" width="' + z + '" height="' + z + '" preserveAspectRatio="xMidYMid meet"/>';
+                    if (!o.spot) return '';
+                    return '<circle cx="' + cx + '" cy="' + cy + '" r="' + (z / 2) + '" fill="rgba(255,255,255,.25)" stroke="' + s.ink + '" stroke-width="1.5" stroke-dasharray="4 3"/><text x="' + cx + '" y="' + (cy + z * .09) + '" font-family="Arial,sans-serif" font-weight="700" font-size="' + Math.max(6, z * .26) + '" text-anchor="middle" fill="' + s.ink + '">LOGO</text>';
+                };
+                var t = s.front || '', n = s.num || '', bk = s.back || '';
+                if (F[5]) { t = t.toUpperCase(); bk = bk.toUpperCase() }
+                if (depan) {
+                    var tengah = pos === 'tengah', zc = 70 * kali, cyc = p === 'jaket' ? 172 : 152;
+                    if (pos === 'dkiri' || pos === 'dkanan') {
+                        var cx = pos === 'dkiri' ? 252 : 148;
+                        out += p === 'pdh' ? logo(cx, 146, Math.min(30, 24 * kali)) : logo(cx, 140, 34 * kali);
+                    }
+                    if (tengah) out += logo(200, cyc, zc);
+                    if (pos === 'lkiri' || pos === 'lkanan') {
+                        var ki = pos === 'lkiri';
+                        out += panjang ? logo(ki ? 314 : 86, 150, Math.min(26, 22 * kali)) : logo(ki ? 326 : 74, 130, Math.min(34, 26 * kali));
+                    }
+                    if (p === 'pdh') {
+                        if (t) out += tulis(t, pos === 'dkiri' ? 150 : 250, 160, fit(t, 13, 52));
+                    } else {
+                        var L = { jersey: [188, 290, 86, 74, 66], kaos: [212, 280, 58, 56, 46], jaket: [216, 280, 58, 50, 42] }[p];
+                        var ty = tengah ? cyc + zc / 2 + 38 : L[0];
+                        if (t) out += tulis(t, 200, ty, fit(t, p === 'kaos' ? 44 : 40, 170));
+                        if (n) out += tengah ? tulis(n, 200, ty + L[3], L[4]) : tulis(n, 200, L[1], L[2]);
+                    }
+                } else {
+                    var by = p === 'jaket' ? 218 : (p === 'pdh' ? 170 : 150), adaL = pos === 'punggung', ns = p === 'jersey' ? 130 : 96, nd = p === 'jersey' ? 130 : 100;
+                    if (adaL) {
+                        out += logo(200, p === 'jaket' ? 204 : by - 42, 40 * kali > 54 ? 54 : 40 * kali);
+                        by = p === 'jaket' ? 262 : by + 24; ns = Math.round(ns * .82); nd = Math.round(nd * .86);
+                    }
+                    if (bk) out += tulis(bk, 200, by, fit(bk, 36, 170));
+                    if (n && p !== 'pdh') out += tulis(n, 200, by + nd, ns);
+                }
+                return out;
+            }
+
+            /* ---------- HERO ---------- */
+            var H = { product: 'jersey', base: '#FFFFFF', accent: '#14283D', ink: '#14283D', pattern: 'lengan', font: 'barlow', front: 'CAPTAIN FC', num: '12', back: '', sleeve: 'short', collar: false, logo: null, logoPos: 'none', logoSize: 's' };
+            function hero() { $('heroBaju').innerHTML = baju(H, 'front', 'h') }
+            $('heroNama').addEventListener('input', function () { H.front = this.value; hero() });
+            $('heroLanjut').addEventListener('click', function () { S.front = $('heroNama').value; S.product = 'jersey'; sinkron() });
+            hero();
+
+            /* ---------- STUDIO ---------- */
+            var S = { product: 'jersey', base: '#14283D', accent: '#F4691A', ink: '#FFFFFF', pattern: 'diagonal', font: 'barlow', front: 'CAPTAIN FC', num: '10', back: 'KAPTEN', sleeve: 'short', collar: false, logo: null, logoPos: 'none', logoSize: 's', view: 'front' };
+            function palet(id, key) {
+                $(id).innerHTML = WARNA.map(function (w) { return '<button type="button" data-c="' + w[0] + '" style="background:' + w[0] + '" aria-label="' + w[1] + '" title="' + w[1] + '"></button>' }).join('') +
+                    '<input type="color" id="' + id + 'Lain" aria-label="Pilih warna lain" title="Warna lain">';
+                $(id).addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { S[key] = b.dataset.c; sinkron() } });
+                $(id).querySelector('input').addEventListener('input', function () { S[key] = this.value; sinkron() });
+            }
+            palet('wBase', 'base'); palet('wAccent', 'accent'); palet('wInk', 'ink');
+            $('pilProduk').innerHTML = URUT.map(function (k) { return '<button type="button" data-k="' + k + '">' + P[k].nama + '</button>' }).join('');
+            $('pilFont').innerHTML = FONT.map(function (f) { return '<button type="button" data-f="' + f[0] + '"><span style="font-family:' + f[2] + CADANG + ';font-weight:' + f[3] + '">' + (f[5] ? 'TIM 10' : 'Tim 10') + '</span><small>' + f[1] + '</small></button>' }).join('');
+            $('pilUkuranLogo').innerHTML = UKL.map(function (x) { return '<button type="button" data-z="' + x[0] + '">' + x[1] + '</button>' }).join('');
+            $('ktab').addEventListener('click', function (e) {
+                var b = e.target.closest('button'); if (!b) return;
+                Array.prototype.forEach.call(this.children, function (x) { x.setAttribute('aria-selected', x === b); $(x.dataset.t).hidden = x !== b })
+            });
+            $('pilProduk').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { S.product = b.dataset.k; sinkron() } });
+            $('pilMotif').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { S.pattern = b.dataset.m; sinkron() } });
+            $('pilFont').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { S.font = b.dataset.f; sinkron() } });
+            $('pilSisi').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { S.view = b.dataset.v; sinkron() } });
+            $('pilModel').addEventListener('click', function (e) {
+                var b = e.target.closest('button'); if (!b) return;
+                if (b.dataset.s) S.sleeve = b.dataset.s; if (b.dataset.col) S.collar = !S.collar; sinkron()
+            });
+            $('pilPos').addEventListener('click', function (e) {
+                var b = e.target.closest('button'); if (!b) return;
+                S.logoPos = b.dataset.p; if (b.dataset.p === 'punggung') S.view = 'back'; else if (b.dataset.p !== 'none') S.view = 'front'; sinkron()
+            });
+            $('pilUkuranLogo').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { S.logoSize = b.dataset.z; sinkron() } });
+            $('sDepan').addEventListener('input', function () { S.front = this.value; if (S.view !== 'front') { S.view = 'front'; sinkron() } else gambar() });
+            $('sBelakang').addEventListener('input', function () { S.back = this.value; if (S.view !== 'back') { S.view = 'back'; sinkron() } else gambar() });
+            $('sNomor').addEventListener('input', function () { this.value = this.value.replace(/\D/g, ''); S.num = this.value; gambar() });
+            $('sLogo').addEventListener('change', function () {
+                var f = this.files && this.files[0]; if (!f) return;
+                if (f.size > 3 * 1024 * 1024) { $('sPesan').textContent = 'Ukuran logo terlalu besar. Pakai file di bawah 3 MB.'; this.value = ''; return }
+                $('sPesan').textContent = '';
+                var r = new FileReader(); r.onload = function () { S.logo = r.result; if (S.logoPos === 'none') S.logoPos = 'dkiri'; S.view = S.logoPos === 'punggung' ? 'back' : 'front'; sinkron() }; r.readAsDataURL(f);
+            });
+            $('btnHapusLogo').addEventListener('click', function () { S.logo = null; $('sLogo').value = ''; sinkron() });
+            function gambar() { $('kanvasBaju').innerHTML = baju(S, S.view, 's', { spot: 1 }) }
+            function tekan(box, fn) { Array.prototype.forEach.call(box.querySelectorAll('button'), function (b) { b.setAttribute('aria-pressed', !!fn(b)) }) }
+            function sinkron() {
+                var p = S.product, m = '';
+                if (p === 'pdh' && S.logoPos === 'tengah') S.logoPos = 'dkiri';
+                if (p !== 'jaket') {
+                    m += '<button type="button" data-s="short">' + (p === 'pdh' ? 'PDH (lengan pendek)' : 'Lengan pendek') + '</button><button type="button" data-s="long">' + (p === 'pdh' ? 'PDL (lengan panjang)' : 'Lengan panjang') + '</button>';
+                    if (p !== 'pdh') m += '<button type="button" data-col="1">Berkerah</button>';
+                }
+                $('pilModel').innerHTML = m; $('boxModel').hidden = (p === 'jaket');
+                $('pilPos').innerHTML = POS.filter(function (x) { return !(p === 'pdh' && x[0] === 'tengah') }).map(function (x) { return '<button type="button" data-p="' + x[0] + '">' + x[1] + '</button>' }).join('');
+                var mini = function (k) { var o = {}; for (var x in S) o[x] = S[x]; o.pattern = k; o.front = ''; o.back = ''; o.num = ''; o.logo = null; o.logoPos = 'none'; return o };
+                $('pilMotif').innerHTML = MOTIF.map(function (x, i) { return '<button type="button" data-m="' + x[0] + '"><svg viewBox="0 0 400 420" aria-hidden="true">' + baju(mini(x[0]), 'front', 'm' + i) + '</svg>' + x[1] + '</button>' }).join('');
+                tekan($('pilProduk'), function (b) { return b.dataset.k === p });
+                tekan($('pilMotif'), function (b) { return b.dataset.m === S.pattern });
+                tekan($('pilFont'), function (b) { return b.dataset.f === S.font });
+                tekan($('pilPos'), function (b) { return b.dataset.p === S.logoPos });
+                tekan($('pilUkuranLogo'), function (b) { return b.dataset.z === S.logoSize });
+                tekan($('pilSisi'), function (b) { return b.dataset.v === S.view });
+                tekan($('pilModel'), function (b) { return b.dataset.s ? b.dataset.s === S.sleeve : S.collar });
+                [['wBase', 'base'], ['wAccent', 'accent'], ['wInk', 'ink']].forEach(function (x) { tekan($(x[0]), function (b) { return b.dataset.c.toLowerCase() === S[x[1]].toLowerCase() }) });
+                $('btnHapusLogo').hidden = !S.logo;
+                if ($('sDepan').value !== S.front) $('sDepan').value = S.front;
+                if ($('sBelakang').value !== S.back) $('sBelakang').value = S.back;
+                if ($('sNomor').value !== S.num) $('sNomor').value = S.num;
+                gambar();
+            }
+            sinkron();
+
+            /* gambar PNG: baju digambar dari SVG, tulisan digambar langsung di kanvas supaya font pilihan ikut tercetak */
+            $('btnUnduh').addEventListener('click', function () {
+                var dep = [], bel = [], F = cari(FONT, S.font);
+                var svg = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 460" width="1600" height="920"><rect width="800" height="460" fill="#EAF2F8"/><g>' + baju(S, 'front', 'a', { noText: 1, items: dep, spot: 1 }) + '</g><g transform="translate(400,0)">' + baju(S, 'back', 'b', { noText: 1, items: bel, spot: 1 }) + '</g></svg>';
+                var gagal = function () { $('sPesan').textContent = 'Gambar belum bisa dibuat di browser ini. Ambil tangkapan layar pratinjau sebagai gantinya.' };
+                var url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml;charset=utf-8' }));
+                var im = new Image();
+                im.onload = function () {
+                    var jadi = function () {
+                        try {
+                            var c = document.createElement('canvas'); c.width = 1600; c.height = 920; var x = c.getContext('2d');
+                            x.drawImage(im, 0, 0, 1600, 920); URL.revokeObjectURL(url); x.textAlign = 'center';
+                            [[dep, 0], [bel, 400]].forEach(function (g) { g[0].forEach(function (i) { x.font = F[3] + ' ' + (i.fs * 2) + 'px ' + F[2] + CADANG; x.fillStyle = i.fill; x.fillText(i.t, (i.x + g[1]) * 2, i.y * 2) }) });
+                            x.font = '600 26px Arial,sans-serif'; x.fillStyle = '#14283D';
+                            x.fillText('Captain Konveksi | ' + P[S.product].nama + ' | depan dan belakang | font ' + F[1], 800, 894);
+                            $('imgDesain').src = c.toDataURL('image/png'); $('hasilGambar').hidden = false; $('sPesan').textContent = ''; $('hasilGambar').scrollIntoView({ block: 'nearest' });
+                        } catch (e) { gagal() }
+                    };
+                    if (document.fonts && document.fonts.load) document.fonts.load(F[3] + ' 40px ' + F[2]).then(jadi, jadi); else jadi();
+                };
+                im.onerror = function () { URL.revokeObjectURL(url); gagal() };
+                im.src = url;
+            });
+
+            function ringkasDesain() {
+                var a = ['Warna dasar ' + NAMAWARNA(S.base), 'warna corak ' + NAMAWARNA(S.accent), 'corak ' + cari(MOTIF, S.pattern)[1].toLowerCase(), 'font ' + cari(FONT, S.font)[1].toLowerCase(), 'warna tulisan ' + NAMAWARNA(S.ink)];
+                if (S.front) a.push('tulisan depan "' + S.front + '"');
+                if (S.back) a.push('tulisan belakang "' + S.back + '"');
+                if (S.num) a.push('nomor ' + S.num);
+                if (S.logoPos !== 'none') a.push('logo di ' + cari(POS, S.logoPos)[1].toLowerCase() + ' ukuran ' + cari(UKL, S.logoSize)[1].toLowerCase() + ' (file logo dikirim lewat chat)');
+                return a.join(', ') + '.';
+            }
+            $('btnPakai').addEventListener('click', function () {
+                $('fProduk').value = S.product; gantiProduk();
+                var k = $('fTambah').querySelector('[value=kerah]'), l = $('fTambah').querySelector('[value=panjang]');
+                if (k) k.checked = S.collar; if (l) l.checked = S.sleeve === 'long';
+                var mdl = S.product === 'pdh' ? (S.sleeve === 'long' ? 'Model PDL (lengan panjang). ' : 'Model PDH (lengan pendek). ') : '';
+                $('fCatatan').value = 'Desain dari website: ' + mdl + ringkasDesain();
+                hitung(); ke('pesan'); $('fNama').focus({ preventScroll: true });
+            });
+
+            /* ---------- FORM PESANAN ---------- */
+            var UK = ['S', 'M', 'L', 'XL', 'XXL'];
+            $('fProduk').innerHTML = URUT.map(function (k) { return '<option value="' + k + '">' + P[k].judul + '</option>' }).join('');
+            $('fUkuran').innerHTML = UK.map(function (u) { return '<div><label for="u' + u + '">' + u + '</label><input id="u' + u + '" type="number" min="0" inputmode="numeric" placeholder="0"></div>' }).join('');
+            function gantiProduk() {
+                var p = P[$('fProduk').value];
+                $('fBahan').innerHTML = p.tier.map(function (t, i) { return '<option value="' + i + '">' + t.n + (t.h ? ' (' + rp(t.h) + ')' : '') + '</option>' }).join('');
+                $('fTambah').innerHTML = p.tambah.map(function (t) { return '<label><input type="checkbox" id="tb_' + t[0] + '" value="' + t[0] + '"> ' + t[1] + ' +' + rp(t[2]) + '</label>' }).join('');
+                $('boxTambah').hidden = !p.tambah.length;
+                hitung();
+            }
+            function baca() {
+                var k = $('fProduk').value, p = P[k], t = p.tier[+$('fBahan').value || 0];
+                var uk = [], qty = 0;
+                UK.forEach(function (u) { var v = Math.max(0, parseInt($('u' + u).value, 10) || 0); if (v) { uk.push(u + ' ' + v); qty += v } });
+                var tb = [], plus = 0;
+                Array.prototype.forEach.call($('fTambah').querySelectorAll('input:checked'), function (c) { var x = cari(p.tambah, c.value); tb.push(x[1]); plus += x[2] });
+                var sat = t.h ? t.h + plus : null;
+                return { k: k, p: p, t: t, uk: uk, qty: qty, tb: tb, sat: sat, total: sat ? sat * qty : null };
+            }
+            function hitung() {
+                var o = baca();
+                if (!o.qty) { $('tRinci').textContent = 'Isi jumlah per ukuran untuk melihat perkiraan harga.'; $('tAngka').textContent = o.sat ? rp(0) : 'Tanya admin'; return }
+                if (o.sat) { $('tRinci').textContent = o.qty + ' pcs × ' + rp(o.sat) + ' per pcs' + (o.qty < 6 ? ' (kurang ' + (6 - o.qty) + ' pcs dari minimal pesan)' : ''); $('tAngka').textContent = rp(o.total) }
+                else { $('tRinci').textContent = o.qty + ' pcs ' + o.p.judul.toLowerCase(); $('tAngka').textContent = 'Tanya admin' }
+            }
+            $('formPesan').addEventListener('input', hitung);
+            $('fProduk').addEventListener('change', gantiProduk);
+            $('fAmbil').addEventListener('change', function () { $('boxAlamat').hidden = this.selectedIndex === 0 });
+            gantiProduk();
+
+            var TEKSNOTA = '';
+            function tgl(v) { if (!v) return ''; var d = new Date(v + 'T00:00:00'); return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) }
+            function hariIni() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) }
+            $('formPesan').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var o = baca(), g = $('fGalat');
+                var nama = $('fNama').value.trim(), wa = $('fWa').value.replace(/[^\d+]/g, ''), kirim = $('fAmbil').selectedIndex === 1, alamat = $('fAlamat').value.trim();
+                var salah = '';
+                if (!nama) salah = 'Nama lengkap belum diisi.';
+                else if (wa.replace(/\D/g, '').length < 9) salah = 'Nomor WhatsApp belum benar. Contoh: 081234567890.';
+                else if (o.qty < 6) salah = 'Jumlah pesanan baru ' + o.qty + ' pcs. Minimal pesan 6 pcs, tambahkan di kolom ukuran.';
+                else if (kirim && alamat.length < 10) salah = 'Alamat pengiriman belum lengkap.';
+                if (salah) { g.textContent = salah; g.scrollIntoView({ block: 'center' }); return }
+                g.textContent = '';
+                var hi = hariIni(), no = 'CK-' + hi.slice(2).replace(/-/g, '') + '-' + Math.floor(1000 + Math.random() * 9000);
+                var baris = [['Nama', nama], ['WhatsApp', wa]];
+                if ($('fInstansi').value.trim()) baris.push(['Tim / instansi', $('fInstansi').value.trim()]);
+                baris.push(['Produk', o.p.judul], ['Bahan', o.t.n]);
+                if (o.tb.length) baris.push(['Tambahan', o.tb.join(', ')]);
+                baris.push(['Ukuran', o.uk.join(', ')], ['Jumlah', o.qty + ' pcs']);
+                if ($('fTanggal').value) baris.push(['Dipakai tanggal', tgl($('fTanggal').value)]);
+                baris.push(['Pengambilan', $('fAmbil').value]);
+                if (kirim) baris.push(['Alamat', alamat]);
+                if ($('fCatatan').value.trim()) baris.push(['Catatan desain', $('fCatatan').value.trim()]);
+                baris.push(['Cara bayar', $('fMetode').value], ['Skema', $('fSkema').value]);
+                baris.push(['Perkiraan harga', o.total ? rp(o.total) + ' (' + o.qty + ' × ' + rp(o.sat) + '), belum termasuk ongkir' : 'Menunggu penawaran admin']);
+                $('nota').innerHTML = '<div class="no">Nota ' + no + '</div><p style="color:var(--redup)">Dibuat ' + tgl(hi) + '. Belum sah sampai dikonfirmasi admin.</p><table>' +
+                    baris.map(function (b) { return '<tr><td>' + b[0] + '</td><td>' + esc(b[1]).replace(/\n/g, '<br>') + '</td></tr>' }).join('') + '</table>';
+                TEKSNOTA = 'Halo Admin Captain Konveksi, saya mau pesan.\n\n*Nota ' + no + '*\n' + baris.map(function (b) { return b[0] + ': ' + b[1] }).join('\n') + '\n\nGambar desain saya kirim setelah pesan ini. Mohon konfirmasi harga, tanggal jadi, dan tujuan pembayarannya. Terima kasih.';
+                $('btnKirimWa').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(TEKSNOTA);
+                $('bNo').value = no; $('bNama').value = nama; $('bMetode').value = $('fMetode').value; $('bTanggal').value = hi;
+                $('notaKosong').hidden = true; $('notaIsi').hidden = false; $('bHasil').hidden = true;
+                ke('bayar');
+            });
+            $('btnSalin').addEventListener('click', function () {
+                var b = this, ok = function () { b.textContent = 'Nota tersalin'; setTimeout(function () { b.textContent = 'Salin nota' }, 2000) };
+                var gagal = function () { b.textContent = 'Belum bisa disalin, pakai tombol WhatsApp'; setTimeout(function () { b.textContent = 'Salin nota' }, 3000) };
+                try { navigator.clipboard.writeText(TEKSNOTA).then(ok, gagal) } catch (e) { gagal() }
+            });
+            $('formBayar').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var g = $('bGalat'), nom = parseInt($('bNominal').value.replace(/\D/g, ''), 10) || 0;
+                if (!$('bNo').value.trim() || !$('bNama').value.trim()) { g.textContent = 'Nomor pesanan dan nama pengirim wajib diisi.'; return }
+                if (nom < 1000) { g.textContent = 'Jumlah belum benar. Tulis angka saja, contoh: 500000.'; return }
+                if (!$('bTanggal').value) { g.textContent = 'Tanggal bayar belum diisi.'; return }
+                g.textContent = '';
+                var t = 'Halo Admin Captain Konveksi, saya konfirmasi pembayaran.\n\nNomor pesanan: ' + $('bNo').value.trim() + '\nNama pengirim: ' + $('bNama').value.trim() + '\nJenis: ' + $('bJenis').value + '\nCara bayar: ' + $('bMetode').value + '\nJumlah: ' + rp(nom) + '\nTanggal bayar: ' + tgl($('bTanggal').value) + '\n\nFoto bukti bayar saya lampirkan setelah pesan ini.';
+                $('bLink').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t); $('bHasil').hidden = false; $('bHasil').scrollIntoView({ block: 'nearest' });
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
