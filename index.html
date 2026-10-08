@@ -2060,6 +2060,45 @@
             $('fAmbil').addEventListener('change', function () { $('boxAlamat').hidden = this.selectedIndex === 0 });
             gantiProduk();
 
+            // Preview Gambar Desain
+            $('fotoDesain').addEventListener('change', function () {
+                var f = this.files && this.files[0];
+                var img = $('imgPreview');
+                if (f) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        img.src = e.target.result;
+                        img.style.display = 'block';
+                    };
+                    reader.readAsDataURL(f);
+                } else {
+                    img.src = '';
+                    img.style.display = 'none';
+                }
+            });
+
+            // API Key ImgBB
+            var IMGBB_API_KEY = '83583ca6b24c17df8995b060b631faa6';
+
+            // Upload gambar ke ImgBB, kembalikan URL gambar atau null
+            async function uploadGambar() {
+                var fileInput = $('fotoDesain');
+                if (!fileInput || !fileInput.files || !fileInput.files[0]) return null;
+                var formData = new FormData();
+                formData.append('key', IMGBB_API_KEY);
+                formData.append('image', fileInput.files[0]);
+                try {
+                    var res = await fetch('https://api.imgbb.com/1/upload', { method: 'POST', body: formData });
+                    var data = await res.json();
+                    if (data && data.success && data.data && data.data.url) return data.data.url;
+                    console.error('Upload ImgBB gagal:', data);
+                    return null;
+                } catch (err) {
+                    console.error('Gagal mengunggah gambar:', err);
+                    return null;
+                }
+            }
+
             var TEKSNOTA = '';
             function tgl(v) { if (!v) return ''; var d = new Date(v + 'T00:00:00'); return d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) }
             function hariIni() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) }
