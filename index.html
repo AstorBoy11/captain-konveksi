@@ -79,7 +79,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 108px;
+            scroll-padding-top: 80px;
             scrollbar-width: none;
             -ms-overflow-style: none
         }
@@ -226,8 +226,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            padding: 10px 16px;
+            gap: 16px;
+            padding: 8px 16px;
             max-width: 1100px;
             margin: 0 auto
         }
@@ -237,11 +237,12 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            min-width: 0
+            min-width: 0;
+            flex-shrink: 0
         }
 
         .merek .ck {
-            height: 56px;
+            height: 48px;
             width: auto;
             flex: none;
             display: block;
@@ -257,21 +258,72 @@
             color: var(--kuning)
         }
 
-        .bar .btn {
+        .bar-aksi {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0
+        }
+
+        .bar-aksi .btn {
             white-space: nowrap;
-            padding: 8px 12px;
+            padding: 8px 14px;
             min-height: 40px;
             font-size: .9rem;
             flex: none
         }
 
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 0;
+            color: var(--putih);
+            transition: background 0.2s, border-color 0.2s
+        }
+
+        .burger:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.35)
+        }
+
+        .burger span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--putih);
+            border-radius: 2px;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            transform-origin: center
+        }
+
+        .burger.aktif span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg)
+        }
+
+        .burger.aktif span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0)
+        }
+
+        .burger.aktif span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg)
+        }
+
         .menu {
             display: flex;
-            gap: 18px;
-            overflow-x: auto;
-            padding: 0 16px 10px;
-            max-width: 1100px;
-            margin: 0 auto;
+            align-items: center;
+            gap: clamp(12px, 1.5vw, 20px);
+            padding: 0;
+            margin: 0;
             scrollbar-width: none
         }
 
@@ -285,13 +337,66 @@
             font-weight: 600;
             font-size: .9rem;
             color: var(--terang);
-            padding: 4px 0;
-            border-bottom: 2px solid transparent
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.15s ease, border-color 0.15s ease
         }
 
         .menu a:hover {
             color: var(--putih);
             border-color: var(--kuning)
+        }
+
+        @media(max-width: 839px) {
+            .bar {
+                padding: 8px 16px
+            }
+
+            .bar-aksi .btn {
+                padding: 7px 11px;
+                min-height: 36px;
+                font-size: .84rem
+            }
+
+            .burger {
+                display: flex
+            }
+
+            .menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(20, 40, 61, 0.96);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+                box-shadow: 0 16px 28px rgba(0, 0, 0, 0.4);
+                padding: 12px 16px 18px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px
+            }
+
+            .menu.buka {
+                display: flex
+            }
+
+            .menu a {
+                padding: 11px 14px;
+                font-size: .95rem;
+                border-radius: 6px;
+                border-bottom: none;
+                border-left: 3px solid transparent
+            }
+
+            .menu a:hover,
+            .menu a:focus-visible {
+                background: rgba(255, 255, 255, 0.08);
+                color: var(--kuning);
+                border-left-color: var(--kuning)
+            }
         }
 
         /* hero */
@@ -322,7 +427,7 @@
             display: grid;
             gap: 18px;
             align-items: center;
-            padding-top: 24px;
+            padding-top: 20px;
         }
 
         .hero h1 {
@@ -1256,7 +1361,7 @@
             }
 
             .kanvas {
-                top: calc(112px + env(safe-area-inset-top, 0px));
+                top: calc(76px + env(safe-area-inset-top, 0px));
                 padding: 14px
             }
 
@@ -1298,16 +1403,23 @@
             <a class="merek" href="#beranda" aria-label="Captain Konveksi, ke bagian atas">
                 <img src="Logo.png" alt="Logo Captain Konveksi" class="ck">
             </a>
-            <a class="btn btn-utama" href="#pesan">Pesan sekarang</a>
+            <nav class="menu" id="menuNav" aria-label="Menu">
+                <a href="#produk">Produk & harga</a>
+                <a href="#studio">Desain sendiri</a>
+                <a href="#cara">Cara pesan</a>
+                <a href="#pesan">Form pesanan</a>
+                <a href="#bayar">Pembayaran</a>
+                <a href="#info">Info & kontak</a>
+            </nav>
+            <div class="bar-aksi">
+                <a class="btn btn-utama" href="#pesan">Pesan sekarang</a>
+                <button class="burger" id="btnBurger" type="button" aria-label="Menu navigasi" aria-expanded="false" aria-controls="menuNav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
-        <nav class="menu" aria-label="Menu">
-            <a href="#produk">Produk & harga</a>
-            <a href="#studio">Desain sendiri</a>
-            <a href="#cara">Cara pesan</a>
-            <a href="#pesan">Form pesanan</a>
-            <a href="#bayar">Pembayaran</a>
-            <a href="#info">Info & kontak</a>
-        </nav>
     </header>
 
     <main>
@@ -1566,7 +1678,7 @@
                         <button class="btn btn-garis" type="button" id="btnSalin">Salin nota</button>
                     </div>
                     <div class="aman"><b>Hati-hati penipuan.</b> Nomor rekening dan QRIS hanya dikirim dari WhatsApp
-                        admin <b>+62 855-4645-6351</b>. Jangan transfer ke tujuan yang dikirim dari nomor lain.</div>
+                        admin <b>+62 858-4378-5748</b>. Jangan transfer ke tujuan yang dikirim dari nomor lain.</div>
 
                     <form class="form" id="formBayar" novalidate>
                         <h3>Sudah bayar? Konfirmasi di sini</h3>
@@ -1607,8 +1719,8 @@
             <div class="wrap">
                 <h2>Info & kontak</h2>
                 <div class="temui">
-                    <a class="t-wa" href="https://wa.me/6285546456351" target="_blank" rel="noopener"><b>WhatsApp
-                            admin</b><span>+62 855-4645-6351, untuk tanya dan pesan</span></a>
+                    <a class="t-wa" href="https://wa.me/6285843785748" target="_blank" rel="noopener"><b>WhatsApp
+                            admin</b><span>+62 858-4378-5748, untuk tanya dan pesan</span></a>
                     <a class="t-ig" href="https://www.instagram.com/captainkonveksi.id/" target="_blank"
                         rel="noopener"><b>Instagram</b><span>@captainkonveksi.id, lihat hasil jadi dan pricelist
                             terbaru</span></a>
@@ -1683,8 +1795,8 @@
         <div class="wrap">
             <p><b style="font:800 1.5rem var(--judul)">captain konveksi</b><br>Konveksi pakaian custom di Kota Malang,
                 sejak 2012.</p>
-            <p>WhatsApp admin <a href="https://wa.me/6285546456351" target="_blank"
-                    rel="noopener">+62 855-4645-6351</a><br>
+            <p>WhatsApp admin <a href="https://wa.me/6285843785748" target="_blank"
+                    rel="noopener">+62 858-4378-5748</a><br>
                 Instagram <a href="https://www.instagram.com/captainkonveksi.id/" target="_blank"
                     rel="noopener">@captainkonveksi.id</a><br>
                 Shopee <a href="https://shopee.co.id/search?keyword=captain%20konveksi" target="_blank"
@@ -1693,13 +1805,13 @@
         </div>
     </footer>
     <a class="btn btn-wa wa-apung"
-        href="https://wa.me/6285546456351?text=Halo%20Admin%20Captain%20Konveksi%2C%20saya%20mau%20tanya%20soal%20pesanan."
+        href="https://wa.me/6285843785748?text=Halo%20Admin%20Captain%20Konveksi%2C%20saya%20mau%20tanya%20soal%20pesanan."
         target="_blank" rel="noopener">Chat admin</a>
 
     <script>
         (function () {
             "use strict";
-            var WA = '6285546456351';
+            var WA = '6285843785748';
             var $ = function (id) { return document.getElementById(id) };
             var ke = function (id) { $(id).scrollIntoView() };
             var rp = function (n) { return 'Rp' + Number(n).toLocaleString('id-ID') };
@@ -2187,6 +2299,33 @@
                 var t = 'Halo Admin Captain Konveksi, saya konfirmasi pembayaran.\n\nNomor pesanan: ' + $('bNo').value.trim() + '\nNama pengirim: ' + $('bNama').value.trim() + '\nJenis: ' + $('bJenis').value + '\nCara bayar: ' + $('bMetode').value + '\nJumlah: ' + rp(nom) + '\nTanggal bayar: ' + tgl($('bTanggal').value) + '\n\nFoto bukti bayar saya lampirkan setelah pesan ini.';
                 $('bLink').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(t); $('bHasil').hidden = false; $('bHasil').scrollIntoView({ block: 'nearest' });
             });
+
+            /* ---------- MENU BURGER (MOBILE) ---------- */
+            var btnBurger = $('btnBurger');
+            var menuNav = $('menuNav');
+            if (btnBurger && menuNav) {
+                var tutupMenu = function () {
+                    btnBurger.setAttribute('aria-expanded', 'false');
+                    btnBurger.classList.remove('aktif');
+                    menuNav.classList.remove('buka');
+                };
+                btnBurger.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var buka = btnBurger.getAttribute('aria-expanded') === 'true';
+                    btnBurger.setAttribute('aria-expanded', String(!buka));
+                    btnBurger.classList.toggle('aktif', !buka);
+                    menuNav.classList.toggle('buka', !buka);
+                });
+                menuNav.addEventListener('click', function (e) {
+                    if (e.target.tagName === 'A') tutupMenu();
+                });
+                document.addEventListener('click', function (e) {
+                    if (!menuNav.contains(e.target) && !btnBurger.contains(e.target)) tutupMenu();
+                });
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') tutupMenu();
+                });
+            }
         })();
     </script>
 
